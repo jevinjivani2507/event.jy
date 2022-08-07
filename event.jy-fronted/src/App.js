@@ -1,10 +1,23 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { Route, Routes, Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="flex flex-col">
+      <Routes>
+        <Route
+          element={
+            <div className="">
+              <Navbar />
+              <Outlet />
+            </div>
+          }
+        >
+          <Route path="/" element={<Dashboard />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
