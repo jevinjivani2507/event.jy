@@ -1,7 +1,8 @@
 import "./App.css";
 import { Route, Routes, Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Dashboard from "./components/Dashboard";
+import Event from "./components/Event";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
