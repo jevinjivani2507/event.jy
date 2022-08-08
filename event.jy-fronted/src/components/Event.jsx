@@ -29,9 +29,6 @@ const Event = () => {
           </div>
         </div>
       </div>
-      {/* <div className="">
-        <SearchEvent />
-      </div> */}
     </div>
   );
 };
