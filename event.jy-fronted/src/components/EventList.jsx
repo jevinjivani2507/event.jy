@@ -1,15 +1,52 @@
 import React from "react";
 import EventCard from "./EventCard";
+import { Dropdown } from "@nextui-org/react";
 
 const EventList = () => {
   return (
     <div className="mx-10 py-20 ">
       <div className="flex justify-between">
         <h1 className="font-bold text-2xl">Upcoming Events</h1>
-        <div className="flex gap-5">
-          <h1>Weekends</h1>
-          <h1>Event Type</h1>
-          <h1>Category</h1>
+        <div className="flex gap-5 dropdownMenu">
+          <Dropdown>
+            <Dropdown.Button flat css={{ $$inputColor: "#323232" }}>
+              Weekends
+            </Dropdown.Button>
+            <Dropdown.Menu color="primary" variant="light" aria-label="Actions">
+              <Dropdown.Item key="new">New file</Dropdown.Item>
+              <Dropdown.Item key="copy">Copy link</Dropdown.Item>
+              <Dropdown.Item key="edit">Edit file</Dropdown.Item>
+              <Dropdown.Item key="delete" color="error" withDivider>
+                Delete file
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown>
+            <Dropdown.Button flat css={{ $$inputColor: "#323232" }}>
+              Event Type
+            </Dropdown.Button>
+            <Dropdown.Menu color="primary" variant="light" aria-label="Actions">
+              <Dropdown.Item key="new">New file</Dropdown.Item>
+              <Dropdown.Item key="copy">Copy link</Dropdown.Item>
+              <Dropdown.Item key="edit">Edit file</Dropdown.Item>
+              <Dropdown.Item key="delete" color="error" withDivider>
+                Delete file
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown>
+            <Dropdown.Button flat css={{ $$inputColor: "#323232" }}>
+              Category
+            </Dropdown.Button>
+            <Dropdown.Menu color="primary" variant="light" aria-label="Actions">
+              <Dropdown.Item key="new">New file</Dropdown.Item>
+              <Dropdown.Item key="copy">Copy link</Dropdown.Item>
+              <Dropdown.Item key="edit">Edit file</Dropdown.Item>
+              <Dropdown.Item key="delete" color="error" withDivider>
+                Delete file
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-7 my-10">

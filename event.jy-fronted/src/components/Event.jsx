@@ -1,6 +1,7 @@
 import React from "react";
 import mainEvent from "../Images/mainEvent.png";
 import SearchEvent from "./SearchEvent";
+import { Button } from "@nextui-org/react";
 
 const Event = () => {
   return (
@@ -19,12 +20,10 @@ const Event = () => {
               you to experience a live Kpop recording.
             </h1>
             <div className="flex gap-5 my-5">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                Buy Now
-              </button>
-              <button className="border-2 border-blue-500 hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-500 font-bold py-2 px-4 rounded-lg">
-                View More
-              </button>
+             
+              <Button auto> <h1 className="z-[-10]">Buy Now</h1> </Button>
+              <Button auto bordered> <h1 className="z-[-10]">Buy Now</h1> </Button>
+             
             </div>
           </div>
         </div>
