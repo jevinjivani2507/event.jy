@@ -4,7 +4,7 @@ import SearchEvent from "./SearchEvent";
 
 const Event = () => {
   return (
-    <div className="flex flex-col h-[80vh] top-0">
+    <div className="flex flex-col h-[80vh] -mx-40 px-40">
       <div className="flex h-full">
         <div className="w-1/2 flex justify-center items-center">
           <img src={mainEvent} alt="" />
@@ -19,11 +19,11 @@ const Event = () => {
               you to experience a live Kpop recording.
             </h1>
             <div className="flex gap-5 my-5">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                 Buy Now
               </button>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                Buy Now
+              <button className="border-2 border-blue-500 hover:bg-blue-700 hover:text-white hover:border-blue-700 text-blue-500 font-bold py-2 px-4 rounded-lg">
+                View More
               </button>
             </div>
           </div>

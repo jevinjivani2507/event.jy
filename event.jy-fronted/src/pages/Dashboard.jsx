@@ -1,12 +1,12 @@
 import React from 'react'
-import Dashboard from '../components/Event'
+import Event from '../components/Event'
 import SearchEvent from '../components/SearchEvent'
 import EventList from '../components/EventList'
 
 const Events = () => {
   return (
     <div className="mx-40">
-        <Dashboard />
+        <Event />
         <SearchEvent />
         <EventList />
 
