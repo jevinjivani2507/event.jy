@@ -2,6 +2,8 @@ import React from "react";
 import mainEvent from "../Images/mainEvent.png";
 import SearchEvent from "./SearchEvent";
 import { Button } from "@nextui-org/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Event = () => {
   return (
@@ -20,10 +22,17 @@ const Event = () => {
               you to experience a live Kpop recording.
             </h1>
             <div className="flex gap-5 my-5">
-             
-              <Button auto> <h1 className="z-[-10]">Buy Now</h1> </Button>
-              <Button auto bordered> <h1 className="z-[-10]">Buy Now</h1> </Button>
-             
+              <div className="dropdownMenu flex gap-5">
+                <Button auto>
+                  {" "}
+                  <h1 className="z-[-10]">Buy Now</h1>{" "}
+                </Button>
+                <Button auto bordered>
+                  {" "}
+                  <h1 className="z-[-10]">View More</h1>{" "}
+                  <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>

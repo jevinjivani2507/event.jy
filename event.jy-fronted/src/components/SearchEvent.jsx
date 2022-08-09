@@ -21,7 +21,6 @@ const SearchEvent = () => {
             clearable
             underlined
             labelPlaceholder="Search Event"
-            initialValue="NextUI"
             color="blue"
           />
         </div>
@@ -30,7 +29,6 @@ const SearchEvent = () => {
             clearable
             underlined
             labelPlaceholder="Search Event"
-            initialValue="NextUI"
           />
         </div>
       </div>
