@@ -3,12 +3,30 @@ import { Route, Routes, Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Event from "./components/Event";
 import Dashboard from "./pages/Dashboard";
-import { NextUIProvider } from "@nextui-org/react";
+import { createTheme, NextUIProvider, Text } from "@nextui-org/react";
+import LoginPage from "./components/LoginPage";
+
+const theme = createTheme({
+  type: "light", // it could be "light" or "dark"
+  theme: {
+    colors: {
+      // brand colors
+      
+
+      // you can also create your own color
+      myColor: "#ff4ecd",
+
+      // ...  more colors
+    },
+    space: {},
+    fonts: {},
+  },
+});
 
 function App() {
   return (
-    <div className="flex flex-col">
-      {/* <NextUIProvider> */}
+    <NextUIProvider theme={theme}>
+      <div className="flex flex-col">
         <Routes>
           <Route
             element={
@@ -19,10 +37,11 @@ function App() {
             }
           >
             <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
         </Routes>
-      {/* </NextUIProvider> */}
-    </div>
+      </div>
+    </NextUIProvider>
   );
 }
 

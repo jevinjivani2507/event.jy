@@ -14,22 +14,22 @@ const Event = () => {
         </div>
         <div className="w-1/2 flex flex-col justify-center">
           <div className=" pl-10">
-            <h1 className="font-bold text-4xl my-5">
+            <p className="font-bold my-5">
               SBS MTV The Kpop Show Ticket Package
-            </h1>
-            <h1 className="text-md">
+            </p>
+            <h3 className="">
               Look no further! Our SBS The Show tickets are the simplest way for
               you to experience a live Kpop recording.
-            </h1>
+            </h3>
             <div className="flex gap-5 my-5">
               <div className="dropdownMenu flex gap-5">
                 <Button auto>
                   {" "}
-                  <h1 className="z-[-10]">Buy Now</h1>{" "}
+                  <h6 className="m-0 z-[-10]">Buy Now</h6>{" "}
                 </Button>
                 <Button auto bordered>
                   {" "}
-                  <h1 className="z-[-10]">View More</h1>{" "}
+                  <h6 className="m-0 z-[-10]">View More</h6>{" "}
                   <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                 </Button>
               </div>
