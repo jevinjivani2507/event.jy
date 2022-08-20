@@ -9,7 +9,7 @@ const EventList = () => {
         <h1 className="font-bold text-2xl">Upcoming Events</h1>
         <div className="flex gap-5 dropdownMenu">
           <Dropdown>
-            <Dropdown.Button flat css={{ $$inputColor: "#323232" }}>
+            <Dropdown.Button color="primary" flat textColor="secondary">
               Weekends
             </Dropdown.Button>
             <Dropdown.Menu color="primary" variant="light" aria-label="Actions">
@@ -22,7 +22,7 @@ const EventList = () => {
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
-            <Dropdown.Button flat css={{ $$inputColor: "#323232" }}>
+            <Dropdown.Button flat>
               Event Type
             </Dropdown.Button>
             <Dropdown.Menu color="primary" variant="light" aria-label="Actions">
@@ -35,7 +35,7 @@ const EventList = () => {
             </Dropdown.Menu>
           </Dropdown>
           <Dropdown>
-            <Dropdown.Button flat css={{ $$inputColor: "#323232" }}>
+            <Dropdown.Button flat>
               Category
             </Dropdown.Button>
             <Dropdown.Menu color="primary" variant="light" aria-label="Actions">

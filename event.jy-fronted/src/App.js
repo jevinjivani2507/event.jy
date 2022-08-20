@@ -11,7 +11,8 @@ const theme = createTheme({
   theme: {
     colors: {
       // brand colors
-      
+      primary: "#323232",
+      secondary: "#FA7000",
 
       // you can also create your own color
       myColor: "#ff4ecd",
