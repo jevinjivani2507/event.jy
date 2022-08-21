@@ -1,5 +1,5 @@
 import React from "react";
-import BlogCard from "./EventCard";
+import BlogCard from "./BlogCard";
 import { Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,7 @@ const Blog = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </h6>
       <div className="grid grid-cols-3 gap-20 my-10">
+        <BlogCard />
         <BlogCard />
         <BlogCard />
         <BlogCard />

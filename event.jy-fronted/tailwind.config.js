@@ -8,7 +8,12 @@ module.exports = {
       colors: {
         mainDark: "#181A20",
         mainBlue: "#242565",
-      }
+      },
+      fontFamily: {
+        MontserratRegular: ["MontserratRegular", "regular"],
+        MontserratBold: ["MontserratBold", "bold"],
+        MontserratSemiBold: ["MontserratSemiBold", "semibold"],
+      },
     },
   },
   plugins: [],

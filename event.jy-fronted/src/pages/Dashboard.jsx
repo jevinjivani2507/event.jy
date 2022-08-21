@@ -8,7 +8,7 @@ const Events = () => {
   return (
     <div className="mx-40">
         <Event />
-        <SearchEvent />
+        {/* <SearchEvent /> */}
         <EventList />
         <Blog />
     </div>
