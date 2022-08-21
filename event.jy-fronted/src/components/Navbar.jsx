@@ -9,7 +9,7 @@ const Navbar = () => {
         <Link to="/">
           <img className="h-8" src={logoWhite} alt="" />
         </Link>
-        <h4 className="m-0">Navbar</h4>
+        <h4 className="m-0 font-MontserratSemiBold">Navbar</h4>
       </div>
     </nav>
   )

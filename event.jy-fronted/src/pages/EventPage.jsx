@@ -14,7 +14,7 @@ const EventPage = () => {
           <Button auto flat size="sm" rounded>
             Technology
           </Button>
-          <header>
+          <header className="font-MontserratSemiBold">
             <h2>Wonder Girls 2010 Wonder Girls World Tour San Francisco</h2>
           </header>
           <User
@@ -22,13 +22,11 @@ const EventPage = () => {
             name="Ariana Wattson"
             description="UI/UX Designer @Github"
           />
-          <div>
-            <p>
+          <div className="font-MontserratRegular">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
               repudiandae sint architecto deleniti fugiat porro hic praesentium
               nihil temporibus distinctio? Laudantium quam repellat voluptas,
               nihil sequi veritatis quidem deleniti deserunt!
-            </p>
           </div>
           <footer className="mt-5">
             <div className="text-mainBlue font-bold text-lg">
@@ -86,26 +84,26 @@ const EventPage = () => {
         <div className="flex items-center h-full mx-40 justify-between">
           <div className="flex gap-10">
             <div>
-              <div className="text-mainBlue font-bold text-lg">Date</div>
-              <div className="font-bold">25 Oct 2022</div>
+              <div className="text-mainBlue font-MontserratSemiBold text-lg">Date</div>
+              <div className="font-MontserratSemiBold text-sm">25 Oct 2022</div>
             </div>
             <div>
-              <div className="text-mainBlue font-bold text-lg">Time</div>
-              <div className="font-bold">7:30 PM</div>
+              <div className="text-mainBlue font-MontserratSemiBold text-lg">Time</div>
+              <div className="font-MontserratSemiBold text-sm">7:30 PM</div>
             </div>
             <div>
-              <div className="text-mainBlue font-bold text-lg">Duration</div>
-              <div className="font-bold">60 min</div>
+              <div className="text-mainBlue font-MontserratSemiBold text-lg">Duration</div>
+              <div className="font-MontserratSemiBold text-sm">60 min</div>
             </div>
           </div>
           <div className="gap-10 flex">
             <div className="">
-              <div className="text-mainBlue font-bold text-lg">Price</div>
-              <div className="font-bold">20 Rs.</div>
+              <div className="text-mainBlue font-MontserratSemiBold text-lg">Price</div>
+              <div className="font-MontserratSemiBold text-sm">20 Rs.</div>
             </div>
             <div className="flex items-center">
               <Button auto color="primary">
-                <h6 className="m-0 z-[-10]">Buy Now</h6>{" "}
+                <h6 className="m-0 z-[-10]">Subscribe</h6>{" "}
               </Button>
             </div>
           </div>

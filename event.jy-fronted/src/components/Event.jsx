@@ -24,7 +24,7 @@ const Event = () => {
             <div className="flex gap-5 my-5">
               <div className="dropdownMenu flex gap-5">
                 <Button auto color="primary" font="myFont">
-                  <h6 className="m-0 z-[-10]">Buy Now</h6>{" "}
+                  <h6 className="m-0 z-[-10]">Register</h6>{" "}
                 </Button>
                 <Button auto bordered>
                   <h6 className="m-0 z-[-10]">View More</h6>{" "}
