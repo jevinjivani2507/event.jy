@@ -23,7 +23,7 @@ const Event = () => {
             </h3>
             <div className="flex gap-5 my-5">
               <div className="dropdownMenu flex gap-5">
-                <Button auto color="primary">
+                <Button auto color="primary" font="myFont">
                   <h6 className="m-0 z-[-10]">Buy Now</h6>{" "}
                 </Button>
                 <Button auto bordered>

@@ -22,7 +22,11 @@ const theme = createTheme({
       // ...  more colors
     },
     space: {},
-    fonts: {},
+    fonts: {
+      // font families
+      body: "MontserratRegular",
+      heading: "MontserratBold",
+    },
   },
 });
 

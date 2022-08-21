@@ -17,14 +17,14 @@ const EventCard = () => {
           <div className="flex justify-center items-center h-[18vh]">
             <div className="w-2/12 text-center h-full flex items-center">
               <div>
-                <span className="font-bold"> Month </span> Date
+                <span className="font-MontserratBold text-sm  text-mainBlue"> Month </span> <span className="text-sm font-MontserratSemiBold">Date</span> 
               </div>
             </div>
             <div className="w-10/12 p-4">
-              <div className="pb-2 font-bold">
+              <div className="pb-2 font-MontserratBold  text-mainBlue">
                 Wonder Girls 2010 Wonder Girls World Tour San Francisco
               </div>
-              <div className="text-xs text-[#888888]">
+              <div className="text-xs font-MontserratRegular text-[#888888]">
                 We’ll get you directly seated and inside for you to enjoy the
                 show.
               </div>
