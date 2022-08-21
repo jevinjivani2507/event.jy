@@ -11,7 +11,7 @@ const EventList = () => {
         <h1 className="font-bold text-2xl">Upcoming Events</h1>
         <div className="flex gap-5 dropdownMenu">
           <Dropdown>
-            <Dropdown.Button color="primary" flat textColor="secondary">
+            <Dropdown.Button color="primary" flat>
               Weekends
             </Dropdown.Button>
             <Dropdown.Menu color="primary" variant="light" aria-label="Actions">
