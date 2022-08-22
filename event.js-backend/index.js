@@ -35,14 +35,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
+    cors({
+        origin: "*",
+    })
 );
 
-const DB = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.xzfurao.mongodb.net/?retryWrites=true&w=majority`;
+const DB = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.rhtymgo.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose
   .connect(DB, { useNewUrlParser: true })
