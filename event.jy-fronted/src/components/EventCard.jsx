@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Text } from "@nextui-org/react";
+import { Card, Modal } from "@nextui-org/react";
 import logoBlack from "../Images/logoBlack.png";
 
 const EventCard = () => {
