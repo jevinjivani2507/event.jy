@@ -40,7 +40,9 @@ app.use(
     })
 );
 
-mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
+const DB = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.xzfurao.mongodb.net/?retryWrites=true&w=majority`;
+
+mongoose.connect(DB, {useNewUrlParser: true}).then(() => {console.log("Connected to DB")}).catch(err => {console.log(err.message)});
 
 const userSchema = new mongoose.Schema({
     email: String,
