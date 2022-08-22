@@ -1,10 +1,11 @@
 import "./App.css";
 import { Route, Routes, Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Event from "./components/Event";
+// import Event from "./components/Event";
 import Dashboard from "./pages/Dashboard";
-import { createTheme, NextUIProvider, Text } from "@nextui-org/react";
+import { createTheme, NextUIProvider } from "@nextui-org/react";
 import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
 
 const theme = createTheme({
   type: "light", // it could be "light" or "dark"
@@ -38,6 +39,7 @@ function App() {
           >
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Route>
         </Routes>
       </div>

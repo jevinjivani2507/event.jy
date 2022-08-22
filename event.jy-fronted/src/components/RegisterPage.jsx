@@ -3,22 +3,18 @@ import { Button, Input } from "@nextui-org/react"
 import axios from "axios";
 
 
-const LoginPage = () => {
+const RegisterPage = () => {
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await axios.post("http://localhost:4000/login", {
+        const response = await axios.post("http://localhost:4000/register", {
             username,
             password
         });
         console.log(response);
-    }
-
-    const google = () => {
-      window.open("http://localhost:4000/auth/google", "_self");
     }
 
 
@@ -38,11 +34,8 @@ const LoginPage = () => {
         </div>
         <Button type="submit" >Submit</Button>
       </form>
-      <div>
-        <Button type="submit" onClick={google}>Google</Button>
-      </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
