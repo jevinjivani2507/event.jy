@@ -34,7 +34,7 @@ app.use(passport.session());
 
 app.use(
     cors({
-        origin: "*",
+        origin: "*",    
     })
 );
 
@@ -82,21 +82,6 @@ app.get("/",function(req,res){
     res.send("Hello");
 })
 
-// app.post("/login",async (req,res) => {
-//     const {username,password} = req.body;
-
-//     console.log(username,password);
-// })
-// app.get("/auth/google",
-//     passport.authenticate("google",{scope:["profile"]})
-// );
-
-// app.get("/auth/google/callback",
-//     passport.authenticate("google",{failureRedirect:"/login"}), function(req,res){
-//         // res.redirect("/secrets");
-//         console.log("success");
-//     }
-// );
 
 app.get("/auth/google",passport.authenticate("google", {scope : ["profile"]}));
 
