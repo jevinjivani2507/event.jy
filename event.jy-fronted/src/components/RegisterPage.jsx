@@ -16,6 +16,7 @@ const RegisterPage = () => {
         });
         response.status === 200 ? console.log("success") : console.log("error");
         console.log(response.data); 
+        
     }
 
 
