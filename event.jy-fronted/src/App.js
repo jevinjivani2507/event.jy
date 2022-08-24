@@ -14,6 +14,8 @@ const theme = createTheme({
       // brand colors
       primary: "#181A20",
       secondary: "#FA7000",
+      tertiary: "#242565",
+      quaternary: "#FFFFFF",
 
       // you can also create your own color
       mainDark: "#181A20",
