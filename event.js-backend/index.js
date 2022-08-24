@@ -13,7 +13,10 @@ const cors = require("cors");
 const validInfo = require("./validInfo");
 const { Router } = require("express");
 const { body, validationResult } = require("express-validator");
-// const _ = require("lodash");
+const { CourierClient } = require("@trycourier/courier");
+const otpGenerator = require('otp-generator')
+
+const courier = CourierClient({ authorizationToken: "dk_prod_KM1KGMXN0SMPCEJE35ZZ48698H41" });
 
 const CLIENT_URL = "http://localhost:3000";
 const app = express();
@@ -36,7 +39,7 @@ app.use(passport.session());
 
 app.use(
     cors({
-        origin: "*",
+        origin: "*",    
     })
 );
 
@@ -89,25 +92,12 @@ passport.use(
   )
 );
 
+
+
 app.get("/", function (req, res) {
   res.send("Hello");
 });
 
-// app.post("/login",async (req,res) => {
-//     const {username,password} = req.body;
-
-//     console.log(username,password);
-// })
-// app.get("/auth/google",
-//     passport.authenticate("google",{scope:["profile"]})
-// );
-
-// app.get("/auth/google/callback",
-//     passport.authenticate("google",{failureRedirect:"/login"}), function(req,res){
-//         // res.redirect("/secrets");
-//         console.log("success");
-//     }
-// );
 
 app.get(
   "/auth/google",
@@ -126,7 +116,7 @@ app.post(
   "/register",
   body("username").isEmail(),
   body("password").isLength({ min: 5 }),
-  function (req, res) {
+ async function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors.array());
@@ -136,6 +126,7 @@ app.post(
     //   res.statusCode = 400;
       res.send(err);
     } else {
+      
       User.register(
         { username: req.body.username },
         req.body.password,
@@ -144,9 +135,26 @@ app.post(
             console.log(err);
             // res.redirect("/register");
           } else {
-            passport.authenticate("local")(req, res, function () {
+            passport.authenticate("local")(req, res,async function () {
               // res.redirect("/secrets");
-              if (validInfo) console.log("registered");
+              const { requestId } = await courier.send({
+                message: {
+                  to: {
+                    email: req.body.username,
+                  },
+                  content: {
+                    title: "Welcome!",
+                    body: otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }),
+                  },
+                  data: {
+                    name: "Hello Jevin",
+                  },
+                  routing: {
+                    method: "single",
+                    channels: ["email"],
+                  },
+                },
+              });
             });
           }
         }
@@ -155,7 +163,10 @@ app.post(
   }
 );
 
-app.post("/login", validInfo, function (req, res) {
+app.post("/login", body("username").isEmail(),
+body("password").isLength({ min: 5 }), 
+    function (req, res) {
+    
   const user = new User({
     username: req.body.username,
     password: req.body.password,
