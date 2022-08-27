@@ -12,22 +12,14 @@ const theme = createTheme({
   theme: {
     colors: {
       // brand colors
-      primary: "#181A20",
-      secondary: "#FA7000",
-      tertiary: "#242565",
-      quaternary: "#FFFFFF",
-
-      // you can also create your own color
-      mainDark: "#181A20",
-      myColor: "#ff4ecd",
+      primary: "#EEEEEE",
 
       // ...  more colors
     },
     space: {},
     fonts: {
       // font families
-      body: "MontserratRegular",
-      heading: "MontserratBold",
+
     },
   },
 });
@@ -35,7 +27,7 @@ const theme = createTheme({
 function App() {
   return (
     <NextUIProvider theme={theme}>
-      <div className="flex flex-col">
+      <div className="flex flex-col bg-[#EAE3D2]">
         <Routes>
           <Route
             element={
@@ -49,6 +41,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/event/:id" element={<EventPage />} />
+            
           </Route>
         </Routes>
       </div>

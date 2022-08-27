@@ -16,18 +16,28 @@ const Event = () => {
         
         <div className="w-1/2 flex flex-col justify-center">
           <div className="pl-10">
-            <p className="font-MontserratSemiBold my-5">
+            <p className="font-MontserratSemiBold my-5 text-textColor">
               SBS MTV The Kpop Show Ticket Package
             </p>
-            <h3 className="font-MontserratBold">
+            <h3 className="font-MontserratBold text-textColor">
               Look no further! Our SBS The Show tickets are the simplest way for
               you to experience a live Kpop recording.
             </h3>
             <div className="flex gap-5 my-5">
               <div className="dropdownMenu flex gap-5">
-                <Button auto color="primary" className="z-[0]">Register
+                <Button
+                  auto
+                  className="!bg-dPrimary !text-dTextColor !font-MontserratSemiBold z-[0]"
+                >
+                  Register
                 </Button>
-                <Button auto bordered className="z-[0] !font-bold">View More
+                <Button
+                  auto
+                  bordered
+                  color="textColor"
+                  className="z-[0] !text-dPrimary !font-MontserratSemiBold"
+                >
+                  View More
                   <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                 </Button>
               </div>

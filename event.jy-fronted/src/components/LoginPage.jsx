@@ -1,12 +1,19 @@
-import React from "react";
-import { Button, Input } from "@nextui-org/react";
+import React, {useState, useEffect} from "react";
+import { Button, Input, Modal } from "@nextui-org/react";
 import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faU, faUser } from "@fortawesome/free-solid-svg-icons";
 import Google from "../Images/Google.svg";
 
+import OTPInput from "otp-input-react";
+
 const LoginPage = () => {
+  const [visible, setVisible] = React.useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
+
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -22,20 +29,29 @@ const LoginPage = () => {
   const google = () => {
     window.open("http://localhost:4000/auth/google", "_self");
   };
+ 
+  
+  const [otp, setOtp] = React.useState("");
+  function handleOtpChange(otp) {
+    setOtp(otp);
+  }
+
+  useEffect(() => {
+    if (otp.length === 6) {
+      // verifyOTP();
+      console.log("otp", otp);
+    }
+  }, [otp]);
+
+
 
   return (
     <div className="flex h-[92vh]">
       <div className="flex justify-center items-center w-5/12">
         <img className="h-[75%]" src={loginGIF} alt="" />
       </div>
-      <div className="w-7/12 flex justify-center items-center bg-mainBlue rounded-l-3xl shadow-2xl">
+      <div className="w-7/12 flex justify-center items-center bg-mainBlue rounded-l-3xl shadow-2xl bg-dSecondary">
         <div className="flex flex-col justify-center items-center bg-white w-[50%] p-10 rounded-2xl">
-          <div className="my-5">
-            <Button.Group className="" color="primary" size="sm" ghost>
-              <Button>Login</Button>
-              <Button>Register</Button>
-            </Button.Group>
-          </div>
           <div>
             <Button
               auto
@@ -69,9 +85,29 @@ const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <Button type="submit">Submit</Button>
+                <Button
+                  type="submit"
+                  className="!bg-dSecondary"
+                  onClick={handler}
+                >
+                  Submit
+                </Button>
               </div>
             </form>
+            <Modal
+              className="!p-5"
+              closeButton
+              preventClose
+              aria-labelledby="modal-title"
+              open={visible}
+              onClose={closeHandler}
+            >
+              <OTPInput 
+                OTPLength={6}
+                onChange={handleOtpChange}
+                value={otp}
+              /> 
+            </Modal>
           </div>
         </div>
       </div>
