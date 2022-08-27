@@ -21,10 +21,10 @@ const EventPage = () => {
   };
 
   return (
-    <div className="mx-40 my-10 ">
+    <div className="mx-40 my-10  ">
       <div className="flex justify-center items-center">
         <div className="flex-col items-center w-7/12 my-5 pr-5">
-          <Button auto flat size="sm" rounded>
+          <Button auto flat size="sm" rounded className="!bg-dSecondary">
             Technology
           </Button>
           <header className="font-MontserratSemiBold">
@@ -48,7 +48,7 @@ const EventPage = () => {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <Button
-                  className="!flex !justify-start"
+                  className="!flex !justify-start !text-textColor"
                   color="primary"
                   auto
                   light
@@ -58,7 +58,7 @@ const EventPage = () => {
                   Direct Interaction with the Instructor
                 </Button>
                 <Button
-                  className="!flex !justify-start"
+                  className="!flex !justify-start !text-textColor"
                   color="primary"
                   auto
                   light
@@ -68,7 +68,7 @@ const EventPage = () => {
                   Access on Mobile and Web
                 </Button>
                 <Button
-                  className="!flex !justify-start"
+                  className="!flex !justify-start !text-textColor"
                   color="primary"
                   auto
                   light
@@ -78,7 +78,7 @@ const EventPage = () => {
                   Session Recording after
                 </Button>
                 <Button
-                  className="!flex !justify-start"
+                  className="!flex !justify-start !text-textColor"
                   color="primary"
                   auto
                   light
@@ -96,7 +96,7 @@ const EventPage = () => {
             </div>
           </footer>
         </div>
-        <div className="flex justify-center items-center w-5/12 rounded-2xl bg-mainDark h-[50vh] shadow-lg">
+        <div className="flex justify-center items-center w-5/12 rounded-2xl bg-mainDark h-[50vh] shadow-lg bg-dSecondary">
           <img src={logoBlack} alt="" />
         </div>
       </div>
@@ -130,8 +130,8 @@ const EventPage = () => {
               <div className="font-MontserratSemiBold text-sm">20 Rs.</div>
             </div>
             <div className="flex items-center">
-              <Button auto color="primary" onClick={handler}>
-                <h6 className="m-0 z-[-10]">Subscribe</h6>{" "}
+              <Button auto color="secondary" className="!bg-dSecondary" onClick={handler}>
+                <h6 className="m-0 z-[-10]">Subscribe</h6>
               </Button>
             </div>
             <Modal
@@ -151,11 +151,11 @@ const EventPage = () => {
                 </div>
               </div>
               <div className="flex justify-end gap-3">
-                <Button auto color="">
-                  <h6 className="m-0 z-[-10]">Cancel</h6>{" "}
+                <Button auto className="!text-textColor !bg-white" onClick={closeHandler}>
+                  <h6 className="m-0 z-[-10]">Cancel</h6>
                 </Button>
-                <Button auto color="primary">
-                  <h6 className="m-0 z-[-10]">Subscribe</h6>{" "}
+                <Button auto color="secondary" className="!bg-dSecondary">
+                  <h6 className="m-0 z-[-10]">Subscribe</h6>
                 </Button>
               </div>
             </Modal>

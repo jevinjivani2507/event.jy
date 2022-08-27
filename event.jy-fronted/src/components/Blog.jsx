@@ -19,8 +19,8 @@ const Blog = () => {
         <BlogCard />
       </div>
       <div className="flex justify-center">
-        <Button auto rounded>
-          <h6 className="m-0 z-[-10]">View More</h6>{" "}
+        <Button auto rounded className="z-[0] !bg-dSecondary">
+          View More
           <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
         </Button>
       </div>
