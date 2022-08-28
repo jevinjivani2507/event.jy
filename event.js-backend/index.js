@@ -11,10 +11,16 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const cors = require("cors");
 const validInfo = require("./validInfo");
-const { Router } = require("express");
 const { body, validationResult } = require("express-validator");
 const { CourierClient } = require("@trycourier/courier");
 const otpGenerator = require('otp-generator')
+
+
+const otpSchema = mongoose.Schema({
+  otp: String,createdAt: { type: Date, expires: '2m', default: Date.now }
+});
+
+// const Otp = 
 
 const courier = CourierClient({ authorizationToken: "dk_prod_KM1KGMXN0SMPCEJE35ZZ48698H41" });
 
@@ -55,15 +61,38 @@ mongoose
   });
 
 const userSchema = new mongoose.Schema({
+  name: String,
+  username: String,
   email: String,
   password: String,
   googleId: String,
+  events: [String], 
+  imgURL: String
 });
+
+const eventSchema = new mongoose.Schema({
+  name:String,
+  Description: String,
+  Tag: String,
+  Club: String,
+  Date: String,
+  Duration: String,
+  Price: String,
+  No_of_participants: String,
+  mode: String,
+  imgURL: String,
+})
+
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
+eventSchema.plugin(passportLocalMongoose);
+eventSchema.plugin(findOrCreate);
+
+
 const User = new mongoose.model("User", userSchema);
+const Event = new mongoose.model("Event", eventSchema);
 
 passport.use(User.createStrategy());
 
@@ -85,7 +114,7 @@ passport.use(
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      User.findOrCreate({ googleId: profile.id, username: profile._json.email}, function (err, user) {
         return cb(err, user);
       });
     }
@@ -101,7 +130,7 @@ app.get("/", function (req, res) {
 
 app.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
+  passport.authenticate("google", { scope: ["profile","email "] })
 );
 
 app.get(
@@ -133,10 +162,10 @@ app.post(
         function (err, user) {
           if (err) {
             console.log(err);
-            // res.redirect("/register");
+
           } else {
             passport.authenticate("local")(req, res,async function () {
-              // res.redirect("/secrets");
+
               const { requestId } = await courier.send({
                 message: {
                   to: {
@@ -171,12 +200,12 @@ body("password").isLength({ min: 5 }),
     username: req.body.username,
     password: req.body.password,
   });
-  req.login(user, function (err) {
+  req.login(user, function (err) {    
     if (err) {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function () {
-        // res.redirect("/secrets");
+
         console.log("login success");
       });
     }

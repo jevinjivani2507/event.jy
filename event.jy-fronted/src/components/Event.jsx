@@ -9,9 +9,11 @@ const Event = () => {
   return (
     <div className="flex flex-col h-[90vh] -mx-40 px-40">
       <div className="flex h-full">
+      {/* <div className="absolute w-[500px] h-[400px] rounded-full bg-gradient-to-r from-pink-500 to-blue-500 blur-3xl opacity-70 top-40 -left-3"></div> */}
         <div className="w-1/2 flex justify-center items-center">
           <img src={mainEvent} alt="" />
         </div>
+        
         <div className="w-1/2 flex flex-col justify-center">
           <div className="pl-10">
             <p className="font-MontserratSemiBold my-5 text-textColor">
