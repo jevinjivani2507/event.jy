@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input, Modal } from "@nextui-org/react";
 import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
@@ -29,8 +29,7 @@ const LoginPage = () => {
   const google = () => {
     window.open("http://localhost:4000/auth/google", "_self");
   };
- 
-  
+
   const [otp, setOtp] = React.useState("");
   function handleOtpChange(otp) {
     setOtp(otp);
@@ -42,8 +41,6 @@ const LoginPage = () => {
       console.log("otp", otp);
     }
   }, [otp]);
-
-
 
   return (
     <div className="flex h-[92vh]">
@@ -102,11 +99,25 @@ const LoginPage = () => {
               open={visible}
               onClose={closeHandler}
             >
-              <OTPInput 
-                OTPLength={6}
-                onChange={handleOtpChange}
-                value={otp}
-              /> 
+              <div className="flex justify-center">
+                <OTPInput
+                  OTPLength={6}
+                  onChange={handleOtpChange}
+                  value={otp}
+                  className=""
+                  inputStyles={{
+                    borderColor: "black",
+                    borderWidth: "2px",
+                    borderStyle: "solid",
+                    borderRadius: "5px",
+                    width: "2rem",
+                    height: "2rem",
+                    fontSize: "1rem",
+                    textAlign: "center",
+                    margin: "0.5rem",
+                  }}
+                />
+              </div>
             </Modal>
           </div>
         </div>
