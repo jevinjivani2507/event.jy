@@ -6,7 +6,7 @@ import Blog from '../components/Blog'
 
 const Events = () => {
   return (
-    <div className="mx-40">
+    <div className="">
         <Event />
         {/* <SearchEvent /> */}
         <EventList />

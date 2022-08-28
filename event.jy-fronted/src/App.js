@@ -7,6 +7,7 @@ import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import MyEvents from "./components/MyEvents";
 import EventPage from "./pages/EventPage";
+import EventList from "./components/EventList";
 
 const theme = createTheme({
   type: "light", // it could be "light" or "dark"
@@ -41,6 +42,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/event/:id" element={<EventPage />} />
+            <Route path="/EventList" element={<EventList />} />
             <Route path="/MyEvents" element={<MyEvents />} />
           </Route>
         </Routes>

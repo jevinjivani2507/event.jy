@@ -57,7 +57,7 @@ const MyEvents = () => {
                   <h6 className="m-0 z-[-10]">Cancel</h6>
                 </Button>
                 <Button auto color="secondary" className="!bg-dSecondary">
-                  <h6 className="m-0 z-[-10]">Subscribe</h6>
+                  <h6 className="m-0 z-[-10]">Unsubscribe</h6>
                 </Button>
               </div>
             </Modal>
