@@ -14,13 +14,23 @@ const validInfo = require("./validInfo");
 const { body, validationResult } = require("express-validator");
 const { CourierClient } = require("@trycourier/courier");
 const otpGenerator = require('otp-generator')
+const otpTool = require("otp-without-db"); 
+const bcrypt = require("bcrypt");
+const salt =   bcrypt.genSalt(10);
+
+const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }); 
+// const otpSchema = mongoose.Schema({
+//   otp: String,createdAt: { type: Date, expires: '2m', default: Date.now }
+// });
+
+// const Otp = new mongoose.model("Otp", otpSchema);
+// Otp.otp =  bcrypt.hash(Otp, salt);
+
+// Otp.save().then((doc) => res.status(201).send(doc));
 
 
-const otpSchema = mongoose.Schema({
-  otp: String,createdAt: { type: Date, expires: '2m', default: Date.now }
-});
 
-// const Otp = 
+// console.log(otp);
 
 const courier = CourierClient({ authorizationToken: "dk_prod_KM1KGMXN0SMPCEJE35ZZ48698H41" });
 
@@ -173,7 +183,7 @@ app.post(
                   },
                   content: {
                     title: "Welcome!",
-                    body: otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }),
+                    body: otp,
                   },
                   data: {
                     name: "Hello Jevin",
@@ -191,6 +201,18 @@ app.post(
     }
   }
 );
+
+app.post("/verifyOTP",function(req,res){
+  console.log(req.body.otp);
+  if (req.body.otp === otp) {
+    console.log("You has been successfully registered")
+    // res.send("You has been successfully registered");
+}
+else {
+  console.log("otp is incorrect");
+    // res.render('otp', { msg: 'otp is incorrect' });
+}
+});
 
 app.post("/login", body("username").isEmail(),
 body("password").isLength({ min: 5 }), 
@@ -210,6 +232,13 @@ body("password").isLength({ min: 5 }),
       });
     }
   });
+});
+
+app.get("/logout",function(req,res){
+  req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
 });
 
 app.listen(4000, function () {

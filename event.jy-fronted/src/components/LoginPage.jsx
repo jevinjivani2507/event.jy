@@ -4,6 +4,7 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 
+
 import OTPInput from "otp-input-react";
 
 const LoginPage = () => {
@@ -17,6 +18,8 @@ const LoginPage = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  // const [errorInOTP, setErrorInOTP] = React.useState(false);
+  // const dispatch = useDispatch();
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.post("http://localhost:4000/login", {
@@ -34,12 +37,20 @@ const LoginPage = () => {
   const [otp, setOtp] = React.useState("");
   function handleOtpChange(otp) {
     setOtp(otp);
+    // if(otp.length === 6){
+    // const response = await axios.post("http://localhost:4000/verifyOTP",{
+    //   otp
+    // });
+    // console.log(response);
   }
 
   useEffect(() => {
     if (otp.length === 6) {
       // verifyOTP();
-      console.log("otp", otp);
+      const response = axios.post("http://localhost:4000/verifyOTP",{
+        otp
+      });
+      console.log(response);
     }
   }, [otp]);
 
