@@ -10,16 +10,28 @@ const Navbar = () => {
         <Link to="/">
           <img className="h-8" src={logoWhite} alt="" />
         </Link>
-        <Link to="/login">
-          <Button
-            className="font-MontserratSemiBold text-white"
-            color="tertiary"
-            variant="contained"
-            auto
-          >
-            Login
-          </Button>
-        </Link>
+        <div className="flex">
+          <Link to="/MyEvents">
+            <Button
+              className="font-MontserratSemiBold text-white"
+              color="tertiary"
+              variant="contained"
+              auto
+            >
+              My Events
+            </Button>
+          </Link>
+          <Link to="/login">
+            <Button
+              className="font-MontserratSemiBold text-white"
+              color="tertiary"
+              variant="contained"
+              auto
+            >
+              Login
+            </Button>
+          </Link>
+        </div>
       </div>
     </nav>
   );

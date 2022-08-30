@@ -5,7 +5,9 @@ import Dashboard from "./pages/Dashboard";
 import { createTheme, NextUIProvider } from "@nextui-org/react";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
+import MyEvents from "./components/MyEvents";
 import EventPage from "./pages/EventPage";
+import EventList from "./components/EventList";
 
 const theme = createTheme({
   type: "light", // it could be "light" or "dark"
@@ -19,7 +21,6 @@ const theme = createTheme({
     space: {},
     fonts: {
       // font families
-
     },
   },
 });
@@ -27,7 +28,7 @@ const theme = createTheme({
 function App() {
   return (
     <NextUIProvider theme={theme}>
-      <div className="flex flex-col bg-[#EAE3D2]">
+      <div className="flex flex-col">
         <Routes>
           <Route
             element={
@@ -41,7 +42,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/event/:id" element={<EventPage />} />
-            
+            <Route path="/EventList" element={<EventList />} />
+            <Route path="/MyEvents" element={<MyEvents />} />
           </Route>
         </Routes>
       </div>

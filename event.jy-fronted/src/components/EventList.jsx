@@ -1,12 +1,13 @@
 import React from "react";
 import EventCard from "./EventCard";
+import { Link } from "react-router-dom";
 import { Dropdown, Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const EventList = () => {
   return (
-    <div className="mx-10 py-20 ">
+    <div className="mx-40 py-20 ">
       <div className="flex justify-between">
         <h1 className="font-MontserratBold text-2xl text-textColor">
           Upcoming Events
@@ -64,10 +65,12 @@ const EventList = () => {
         <EventCard />
       </div>
       <div className="flex justify-center">
+        <Link to="EventList">
         <Button auto rounded className="z-[0] !bg-dSecondary">
           View More
           <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
         </Button>
+        </Link>
       </div>
     </div>
   );
