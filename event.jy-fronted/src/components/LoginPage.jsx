@@ -54,7 +54,7 @@ const LoginPage = () => {
   }, [otp]);
 
   return (
-    <div className="flex h-[92vh]">
+    <div className="flex h-screen">
       <div className="flex justify-center items-center w-5/12">
         <img className="h-[75%]" src={loginGIF} alt="" />
       </div>

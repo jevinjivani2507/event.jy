@@ -14,13 +14,13 @@ const Event = () => {
           <img src={mainEvent} alt="" />
         </div>
         <div className="w-1/2 flex flex-col justify-center">
-          <div className="pl-10">
+          <div className="pr-40">
             <p className="font-MontserratSemiBold my-5 text-textColor">
               SBS MTV The Kpop Show Ticket Package
             </p>
             <h3 className="font-MontserratBold text-textColor">
-              Look no further! Our SBS The Show tickets are the simplest way for
-              you to experience a live Kpop recording.
+              We’ll get you directly seated and inside for you to enjoy the
+              show.
             </h3>
             <div className="flex gap-5 my-5">
               <div className="dropdownMenu flex gap-5">

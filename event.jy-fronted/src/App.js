@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import { createTheme, NextUIProvider } from "@nextui-org/react";
@@ -26,6 +26,10 @@ const theme = createTheme({
 });
 
 function App() {
+
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <NextUIProvider theme={theme}>
       <div className="flex flex-col">
