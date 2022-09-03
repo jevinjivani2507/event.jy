@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const location = useLocation();
 
-  if (location.pathname === "/login") return null;
+  if (location.pathname === "/login" || location.pathname === "/register") return null;
   
   return (
     <nav className="top-0 sticky h-[8vh] bg-dPrimary shadow-lg text-white z-[10]">

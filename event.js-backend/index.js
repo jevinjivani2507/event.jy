@@ -8,7 +8,6 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const cors = require("cors");
-const validInfo = require("./validInfo");
 const { body, validationResult } = require("express-validator");
 const { CourierClient } = require("@trycourier/courier");
 const otpGenerator = require('otp-generator')

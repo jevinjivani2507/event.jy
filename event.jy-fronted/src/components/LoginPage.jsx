@@ -4,7 +4,6 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 
-
 import OTPInput from "otp-input-react";
 
 const LoginPage = () => {
@@ -46,8 +45,8 @@ const LoginPage = () => {
   useEffect(() => {
     if (otp.length === 6) {
       // verifyOTP();
-      const response = axios.post("http://localhost:4000/verifyOTP",{
-        otp
+      const response = axios.post("http://localhost:4000/verifyOTP", {
+        otp,
       });
       console.log(response);
     }
@@ -110,24 +109,34 @@ const LoginPage = () => {
               open={visible}
               onClose={closeHandler}
             >
-              <div className="flex justify-center">
-                <OTPInput
-                  OTPLength={6}
-                  onChange={handleOtpChange}
-                  value={otp}
-                  className=""
-                  inputStyles={{
-                    borderColor: "black",
-                    borderWidth: "2px",
-                    borderStyle: "solid",
-                    borderRadius: "5px",
-                    width: "2rem",
-                    height: "2rem",
-                    fontSize: "1rem",
-                    textAlign: "center",
-                    margin: "0.5rem",
-                  }}
-                />
+              <div className="flex flex-col justify-center">
+                <div className="font-bold text-2xl">
+                  Check your Email...
+                </div>
+                <div className="flex justify-center my-2">
+                  <OTPInput
+                    OTPLength={6}
+                    onChange={handleOtpChange}
+                    value={otp}
+                    className=""
+                    inputStyles={{
+                      borderColor: "black",
+                      borderWidth: "2px",
+                      borderStyle: "solid",
+                      borderRadius: "5px",
+                      width: "2rem",
+                      height: "2rem",
+                      fontSize: "1rem",
+                      textAlign: "center",
+                      margin: "0.5rem",
+                    }}
+                  />
+                </div>
+                <div className="flex justify-center w-full">
+                  <Button type="submit" className="!bg-dSecondary" auto>
+                    Submit
+                  </Button>
+                </div>
               </div>
             </Modal>
           </div>
