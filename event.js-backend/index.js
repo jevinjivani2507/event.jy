@@ -16,10 +16,7 @@ const bcrypt = require("bcrypt");
 const salt =   bcrypt.genSalt(10);
 
 const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }); 
-
-const otpSchema = mongoose.Schema({
-  otp: String,createdAt: { type: Date, expires: '2m', default: Date.now }
-});
+console.log(otp);
 
 // const Otp = new mongoose.model("Otp", otpSchema);
 // Otp.otp =  bcrypt.hash(Otp, salt);
@@ -225,7 +222,7 @@ app.post("/verifyOTP",function(req,res){
   if (req.body.otp === otp) {
     // console.log("You has been successfully registered");
     // res.send()
-    res.send("You has been successfully registered");
+    res.send(true);
 }
 else {
   console.log("otp is incorrect");

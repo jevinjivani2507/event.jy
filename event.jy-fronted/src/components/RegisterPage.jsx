@@ -4,6 +4,7 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 import OTPInput from "otp-input-react";
+import { Navigate } from "react-router-dom";
 
 const RegisterPage = () => {
 
@@ -56,8 +57,13 @@ const RegisterPage = () => {
         otp,
       });
       console.log(response);
+      if(response)
+      {
+        <Navigate to="/" />
+      }
     }
     console.log("otpSubmit");
+    //  setOtp("");
   }
 
   return (
