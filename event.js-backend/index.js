@@ -79,13 +79,13 @@ const userSchema = new mongoose.Schema({
 
 const eventSchema = new mongoose.Schema({
   name:String,
-  Description: String,
-  Tag: String,
-  Club: String,
-  Date: String,
-  Duration: String,
-  Price: String,
-  No_of_participants: String,
+  description: String,
+  tag: String,
+  club: String,
+  date: String,
+  duration: String,
+  price: String,
+  no_of_participants: String,
   mode: String,
   imgURL: String,
 })
@@ -147,6 +147,26 @@ app.get(
     failureRedirect: "/login",
   })
 );
+
+app.get("/events",function(req,res){
+
+})
+
+app.post("/addEvents",function(req,res){
+  const event = new Event({
+      name: req.body.name,
+      description: req.body.description,
+      tag: req.body.tag,
+      club: req.body.club,
+      date: req.body.date,
+      duration: req.body.duration,
+      price: req.body.price,
+      no_of_participants: req.body.no_of_participants,
+      mode: req.body.mode,
+      imgURL: req.body.imgURL
+  });
+
+})
 
 app.post(
   "/register",
