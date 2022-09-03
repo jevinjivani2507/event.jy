@@ -4,10 +4,10 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 import OTPInput from "otp-input-react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
-
+  const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -56,10 +56,11 @@ const RegisterPage = () => {
       const response = await axios.post("http://localhost:4000/verifyOTP", {
         otp,
       });
-      console.log(response);
-      if(response)
+      // console.log(response);
+      if(response.status === 200)
       {
-        <Navigate to="/" />
+        console.log(response);
+        navigate("/");
       }
     }
     console.log("otpSubmit");
