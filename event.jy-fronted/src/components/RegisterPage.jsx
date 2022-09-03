@@ -6,15 +6,11 @@ import Google from "../Images/Google.svg";
 import OTPInput from "otp-input-react";
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const RegisterPage = () => {
-=======
-const RegisterPage = () => {
   const navigate = useNavigate();
->>>>>>> 569775688bd4b35d97059b074af06e7f8d5497ee
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -63,28 +59,14 @@ const RegisterPage = () => {
       const response = await axios.post("http://localhost:4000/verifyOTP", {
         otp,
       });
-<<<<<<< HEAD
-      console.log(response);
-      if(response.status === 200){
-        toast.success("OTP Verified");
-        setTimeout(() => {
-          window.location.reload("/register");
-        }, 2000);
-        // Navigate to Dashboard
-        
-        Temo("/");
-=======
       // console.log(response);
-      if(response.status === 200)
-      {
+      if (response.status === 200) {
         console.log(response);
-        navigate("/");
->>>>>>> 569775688bd4b35d97059b074af06e7f8d5497ee
+        navigate("/login");
       }
     }
     console.log("otpSubmit");
   };
-  
 
   return (
     <div className="flex h-screen">

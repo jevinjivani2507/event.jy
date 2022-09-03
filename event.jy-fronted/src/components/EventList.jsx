@@ -12,10 +12,6 @@ const EventList = () => {
 
   const [data, setData] = useState(null);
 
-  useEffect(()=>{
-    fetch('http://localhost:4000/login')
-  },[])
-
   return (
     <div className="mx-40 py-20 ">
       <div className="flex justify-between">

@@ -4,11 +4,14 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 
-import OtpModel from "./OtpModel";
-
 import OTPInput from "otp-input-react";
+import { useNavigate } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -28,6 +31,12 @@ const LoginPage = () => {
       password,
     });
     console.log(response);
+    if(response.status === 200){
+      navigate("/");
+    }else{
+      console.log(response.data);
+      toast.error("Invalid Credentials!!");
+    }
   }
 
   const google = () => {
@@ -97,51 +106,13 @@ const LoginPage = () => {
                 <Button
                   type="submit"
                   className="!bg-dSecondary"
-                  onClick={handler}
+                  onClick={handleSubmit}
                 >
                   Submit
                 </Button>
+                <ToastContainer />
               </div>
             </form>
-            <Modal
-              className="!p-5"
-              closeButton
-              preventClose
-              aria-labelledby="modal-title"
-              open={visible}
-              onClose={closeHandler}
-            >
-              <OtpModel />
-              {/* <div className="flex flex-col justify-center">
-                <div className="font-bold text-2xl">
-                  Check your Email...
-                </div>
-                <div className="flex justify-center my-2">
-                  <OTPInput
-                    OTPLength={6}
-                    onChange={handleOtpChange}
-                    value={otp}
-                    className=""
-                    inputStyles={{
-                      borderColor: "black",
-                      borderWidth: "2px",
-                      borderStyle: "solid",
-                      borderRadius: "5px",
-                      width: "2rem",
-                      height: "2rem",
-                      fontSize: "1rem",
-                      textAlign: "center",
-                      margin: "0.5rem",
-                    }}
-                  />
-                </div>
-                <div className="flex justify-center w-full">
-                  <Button type="submit" className="!bg-dSecondary" auto>
-                    Submit
-                  </Button>
-                </div>
-              </div> */}
-            </Modal>
           </div>
         </div>
       </div>
