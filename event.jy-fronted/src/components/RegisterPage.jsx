@@ -5,8 +5,10 @@ import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 import OTPInput from "otp-input-react";
 
-const RegisterPage = () => {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+const RegisterPage = () => {
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -17,8 +19,6 @@ const RegisterPage = () => {
   const [name, setName] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -49,10 +49,18 @@ const RegisterPage = () => {
     }
   }, [otp]);
 
-  const otpSubmit = () => {
-    
+  const otpSubmit = async () => {
+    if (otp.length === 6) {
+      // verifyOTP();
+      const response = await axios.post("http://localhost:4000/verifyOTP", {
+        otp,
+      });
+      console.log(response);
+    }
     console.log("otpSubmit");
-  }
+  };
+
+  const notify = () => toast("Wow so easy!");
 
   return (
     <div className="flex h-screen">
@@ -84,7 +92,7 @@ const RegisterPage = () => {
                     placeholder="Name"
                     className=""
                     value={name}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
                   <Input
                     type="text"
@@ -140,9 +148,15 @@ const RegisterPage = () => {
                   />
                 </div>
                 <div className="flex justify-center w-full">
-                  <Button type="submit" className="!bg-dSecondary" auto onPress={otpSubmit}>
+                  <Button
+                    type="submit"
+                    className="!bg-dSecondary"
+                    auto
+                    onPress={otpSubmit}
+                  >
                     Submit
                   </Button>
+                  <ToastContainer />
                 </div>
               </div>
             </Modal>
