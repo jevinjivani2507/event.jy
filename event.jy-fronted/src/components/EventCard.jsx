@@ -4,7 +4,7 @@ import { Card, Modal } from "@nextui-org/react";
 import logoBlack from "../Images/logoBlack.png";
 import logoWhite from "../Images/logoWhite.png";
 
-const EventCard = () => {
+const EventCard = (props) => {
   const i = 2;
   return (
     <div className="w-full">
@@ -16,18 +16,22 @@ const EventCard = () => {
             </div>
           </div>
           <div className="flex justify-center items-center h-[18vh] bg-dSecondary">
-            <div className="w-2/12 text-center h-full flex items-center">
-              <div>
-                <span className="font-MontserratBold text-sm  text-dTextColor"> Month </span> <span className="text-sm font-MontserratSemiBold text-dTextColor">Date</span> 
+            <div className="w-2/12 text-center h-full flex justify-center items-center">
+              <div className="flex flex-col justify-center">
+                <div className="font-MontserratBold text-sm  text-dTextColor uppercase">
+                {props.month.substring(0, 3)}
+                </div>
+                <div className="text-sm font-MontserratSemiBold text-dTextColor uppercase">
+                {props.date}
+                </div>
               </div>
             </div>
-            <div className="w-10/12 p-4">
+            <div className="w-10/12 pr-4">
               <div className="pb-2 font-MontserratBold  text-dTextColor">
-                Wonder Girls 2010 Wonder Girls World Tour San Francisco
+                {props.title}
               </div>
               <div className="text-xs font-MontserratRegular text-dTextColor">
-                We’ll get you directly seated and inside for you to enjoy the
-                show.
+              {props.discription}
               </div>
             </div>
           </div>

@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useState,useEffect } from "react";
 
+import events from "../JSON/events";
+
 const EventList = () => {
 
   const [data, setData] = useState(null);
@@ -67,17 +69,23 @@ const EventList = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-7 my-10">
-        <EventCard />
-        <EventCard />
-        <EventCard />
-        <EventCard />
+        {events.map((event) => (
+          <EventCard
+            key={event.id}
+            title={event.title}
+            discription={event.discription}
+            image={event.image}
+            date={event.date}
+            month={event.month}
+          />
+        ))}
       </div>
       <div className="flex justify-center">
         <Link to="EventList">
-        <Button auto rounded className="z-[0] !bg-dSecondary">
-          View More
-          <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-        </Button>
+          <Button auto rounded className="z-[0] !bg-dSecondary">
+            View More
+            <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+          </Button>
         </Link>
       </div>
     </div>
