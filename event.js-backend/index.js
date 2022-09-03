@@ -16,9 +16,10 @@ const bcrypt = require("bcrypt");
 const salt =   bcrypt.genSalt(10);
 
 const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }); 
-// const otpSchema = mongoose.Schema({
-//   otp: String,createdAt: { type: Date, expires: '2m', default: Date.now }
-// });
+
+const otpSchema = mongoose.Schema({
+  otp: String,createdAt: { type: Date, expires: '2m', default: Date.now }
+});
 
 // const Otp = new mongoose.model("Otp", otpSchema);
 // Otp.otp =  bcrypt.hash(Otp, salt);
@@ -165,7 +166,6 @@ app.post("/addEvents",function(req,res){
       mode: req.body.mode,
       imgURL: req.body.imgURL
   });
-
 })
 
 app.post(
@@ -184,8 +184,9 @@ app.post(
     } else {
       
       User.register(
-        { username: req.body.username },
-        req.body.password,
+        { name: req.body.name,
+          username: req.body.username },
+          req.body.password,
         function (err, user) {
           if (err) {
             console.log(err);
@@ -222,12 +223,12 @@ app.post(
 app.post("/verifyOTP",function(req,res){
   console.log(req.body.otp);
   if (req.body.otp === otp) {
-    console.log("You has been successfully registered")
-    // res.send("You has been successfully registered");
+    // console.log("You has been successfully registered");
+    // res.send()
+    res.send("You has been successfully registered");
 }
 else {
   console.log("otp is incorrect");
-    // res.render('otp', { msg: 'otp is incorrect' });
 }
 });
 

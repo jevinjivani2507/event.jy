@@ -39,18 +39,24 @@ const RegisterPage = () => {
     setOtp(otp);
   }
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (otp.length === 6) {
+  //     // verifyOTP();
+  //     const response = axios.post("http://localhost:4000/verifyOTP", {
+  //       otp,
+  //     });
+  //     console.log(response);
+  //   }
+  // }, [otp]);
+
+  const  otpSubmit = async() => {
     if (otp.length === 6) {
       // verifyOTP();
-      const response = axios.post("http://localhost:4000/verifyOTP", {
+      const response = await axios.post("http://localhost:4000/verifyOTP", {
         otp,
       });
       console.log(response);
     }
-  }, [otp]);
-
-  const otpSubmit = () => {
-    
     console.log("otpSubmit");
   }
 
@@ -84,7 +90,7 @@ const RegisterPage = () => {
                     placeholder="Name"
                     className=""
                     value={name}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
                   <Input
                     type="text"
