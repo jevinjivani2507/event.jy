@@ -15,8 +15,8 @@ const otpTool = require("otp-without-db");
 const bcrypt = require("bcrypt");
 const salt =   bcrypt.genSalt(10);
 
-const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }); 
-console.log(otp);
+let otp = "adsasa";
+
 
 // const Otp = new mongoose.model("Otp", otpSchema);
 // Otp.otp =  bcrypt.hash(Otp, salt);
@@ -171,6 +171,8 @@ app.post(
   body("password").isLength({ min: 5 }),
  async function (req, res) {
     const errors = validationResult(req);
+    otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }); 
+    console.log(otp);
     if (!errors.isEmpty()) {
       console.log(errors.array());
       const err = {
@@ -221,7 +223,11 @@ app.post("/verifyOTP",function(req,res){
   console.log(req.body.otp);
   if (req.body.otp === otp) {
     // res.send()
+<<<<<<< HEAD
     res.send(200);
+=======
+    res.sendStatus(200);
+>>>>>>> 569775688bd4b35d97059b074af06e7f8d5497ee
 }
 else {
   console.log("otp is incorrect");
