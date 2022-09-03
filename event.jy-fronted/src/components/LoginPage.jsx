@@ -4,6 +4,8 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 
+import OtpModel from "./OtpModel";
+
 import OTPInput from "otp-input-react";
 
 const LoginPage = () => {
@@ -109,7 +111,8 @@ const LoginPage = () => {
               open={visible}
               onClose={closeHandler}
             >
-              <div className="flex flex-col justify-center">
+              <OtpModel />
+              {/* <div className="flex flex-col justify-center">
                 <div className="font-bold text-2xl">
                   Check your Email...
                 </div>
@@ -137,7 +140,7 @@ const LoginPage = () => {
                     Submit
                   </Button>
                 </div>
-              </div>
+              </div> */}
             </Modal>
           </div>
         </div>

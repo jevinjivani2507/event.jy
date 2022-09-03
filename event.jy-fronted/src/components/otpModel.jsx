@@ -2,7 +2,14 @@ import React from 'react'
 
 const otpModel = () => {
   return (
-    <div>otpModel</div>
+    <div>
+      <div>
+        hello
+      </div>
+      <div>
+        World
+      </div>
+    </div>
   )
 }
 

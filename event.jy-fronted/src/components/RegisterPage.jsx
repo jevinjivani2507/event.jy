@@ -4,6 +4,7 @@ import axios from "axios";
 import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 import OTPInput from "otp-input-react";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,15 +40,17 @@ const RegisterPage = () => {
     setOtp(otp);
   }
 
-  useEffect(() => {
-    if (otp.length === 6) {
-      // verifyOTP();
-      const response = axios.post("http://localhost:4000/verifyOTP", {
-        otp,
-      });
-      console.log(response);
-    }
-  }, [otp]);
+  // useEffect(() => {
+  //   if (otp.length === 6) {
+  //     // verifyOTP();
+  //     const response = axios.post("http://localhost:4000/verifyOTP", {
+  //       otp,
+  //     });
+  //     console.log(response);
+  //   }
+  // }, [otp]);
+
+  const Temo = useNavigate();
 
   const otpSubmit = async () => {
     if (otp.length === 6) {
@@ -56,11 +59,19 @@ const RegisterPage = () => {
         otp,
       });
       console.log(response);
+      if(response.status === 200){
+        toast.success("OTP Verified");
+        setTimeout(() => {
+          window.location.reload("/register");
+        }, 2000);
+        // Navigate to Dashboard
+        
+        Temo("/");
+      }
     }
     console.log("otpSubmit");
   };
-
-  const notify = () => toast("Wow so easy!");
+  
 
   return (
     <div className="flex h-screen">
