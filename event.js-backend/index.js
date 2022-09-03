@@ -220,9 +220,8 @@ app.post(
 app.post("/verifyOTP",function(req,res){
   console.log(req.body.otp);
   if (req.body.otp === otp) {
-    // console.log("You has been successfully registered");
     // res.send()
-    res.send(true);
+    res.send(200);
 }
 else {
   console.log("otp is incorrect");
