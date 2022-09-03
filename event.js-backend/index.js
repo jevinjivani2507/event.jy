@@ -223,11 +223,9 @@ app.post("/verifyOTP",function(req,res){
   console.log(req.body.otp);
   if (req.body.otp === otp) {
     // res.send()
-<<<<<<< HEAD
-    res.send(200);
-=======
+
     res.sendStatus(200);
->>>>>>> 569775688bd4b35d97059b074af06e7f8d5497ee
+
 }
 else {
   console.log("otp is incorrect");
