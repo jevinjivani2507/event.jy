@@ -247,7 +247,7 @@ app.post(
   body("username").isEmail(),
   body("password").isLength({ min: 5 }),
   function (req, res) {
-    const user = User.find({
+    const user = new User({
       username: req.body.username,
       password: req.body.password,
     });

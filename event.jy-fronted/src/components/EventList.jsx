@@ -10,8 +10,6 @@ import events from "../JSON/events";
 
 const EventList = () => {
 
-  const [data, setData] = useState(null);
-
   return (
     <div className="mx-40 py-20 ">
       <div className="flex justify-between">
