@@ -5,14 +5,12 @@ import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 import OTPInput from "otp-input-react";
 import { useNavigate } from "react-router-dom";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 const RegisterPage = () => {
   const navigate = useNavigate();
-
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -53,25 +51,20 @@ const RegisterPage = () => {
   //   }
   // }, [otp]);
 
-  const Temo = useNavigate();
-
   const otpSubmit = async () => {
     if (otp.length === 6) {
       // verifyOTP();
       const response = await axios.post("http://localhost:4000/verifyOTP", {
         otp,
       });
-      if(response.status === 200){
-        toast.success("OTP Verified");
-        setTimeout(() => {
-          window.location.reload("/register");
-        }, 2000);
-        navigate("/");
+      // console.log(response);
+      if (response.status === 200) {
+        // console.log(response);
+        navigate("/login");
       }
-    
-  }
-};
-  
+    }
+    // console.log("otpSubmit");
+  };
 
   return (
     <div className="flex h-screen">

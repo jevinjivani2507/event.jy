@@ -10,24 +10,23 @@ const findOrCreate = require("mongoose-findorcreate");
 const cors = require("cors");
 const { body, validationResult } = require("express-validator");
 const { CourierClient } = require("@trycourier/courier");
-const otpGenerator = require('otp-generator')
-const otpTool = require("otp-without-db"); 
+const otpGenerator = require("otp-generator");
 const bcrypt = require("bcrypt");
-const salt =   bcrypt.genSalt(10);
+const LocalStrategy = require('passport-local');
+
 
 let otp = "adsasa";
-
 
 // const Otp = new mongoose.model("Otp", otpSchema);
 // Otp.otp =  bcrypt.hash(Otp, salt);
 
 // Otp.save().then((doc) => res.status(201).send(doc));
 
-
-
 // console.log(otp);
 
-const courier = CourierClient({ authorizationToken: "dk_prod_KM1KGMXN0SMPCEJE35ZZ48698H41" });
+const courier = CourierClient({
+  authorizationToken: "dk_prod_KM1KGMXN0SMPCEJE35ZZ48698H41",
+});
 
 const CLIENT_URL = "http://localhost:3000";
 const app = express();
@@ -49,10 +48,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
-    cors({
-        origin: "*",    
-    })
+  cors({
+    origin: "*",
+  })
 );
+
 
 const DB = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.rhtymgo.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -71,12 +71,12 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   googleId: String,
-  events: [String], 
-  imgURL: String
+  events: [String],
+  imgURL: String,
 });
 
 const eventSchema = new mongoose.Schema({
-  name:String,
+  name: String,
   description: String,
   tag: String,
   club: String,
@@ -86,8 +86,7 @@ const eventSchema = new mongoose.Schema({
   no_of_participants: String,
   mode: String,
   imgURL: String,
-})
-
+});
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
@@ -95,9 +94,55 @@ userSchema.plugin(findOrCreate);
 eventSchema.plugin(passportLocalMongoose);
 eventSchema.plugin(findOrCreate);
 
-
 const User = new mongoose.model("User", userSchema);
 const Event = new mongoose.model("Event", eventSchema);
+
+
+
+
+passport.use(
+  new LocalStrategy(
+    { usernameField: "username", passwordField: "password" },
+    async (username, password, done) => {
+      try {
+        User.findOne(
+          { $or: [{ username: username }, { email: username }] },
+          async (err, foundUser) => {
+            if (err) {
+              console.log(err);
+              return done(err);
+            } else if (!foundUser) {
+              return done(null, false, { message: "Unknown User " + username });
+            } else {
+              // foundUser = JSON.parse(foundUser);
+              await bcrypt.compare(
+                password,
+                foundUser.password,
+                (error, result) => {
+                  if (error) {
+                    return done(null, false, error);
+                  } else {
+                    if (result) {
+                      return done(null, foundUser);
+                    } else {
+                      return done(null, false, {
+                        message: `Password didn't match`,
+                      });
+                    }
+                  }
+                }
+              );
+            }
+          }
+        );
+      } catch (error) {
+        console.log(error);
+        done(error);
+      }
+    }
+  )
+);
+
 
 passport.use(User.createStrategy());
 
@@ -119,23 +164,23 @@ passport.use(
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id, username: profile._json.email}, function (err, user) {
-        return cb(err, user);
-      });
+      User.findOrCreate(
+        { googleId: profile.id, username: profile._json.email },
+        function (err, user) {
+          return cb(err, user);
+        }
+      );
     }
   )
 );
-
-
 
 app.get("/", function (req, res) {
   res.send("Hello");
 });
 
-
 app.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile","email "] })
+  passport.authenticate("google", { scope: ["profile", "email "] })
 );
 
 app.get(
@@ -146,53 +191,50 @@ app.get(
   })
 );
 
-app.get("/events",function(req,res){
+app.get("/events", function (req, res) {});
 
-})
-
-app.post("/addEvents",function(req,res){
+app.post("/addEvents", function (req, res) {
   const event = new Event({
-      name: req.body.name,
-      description: req.body.description,
-      tag: req.body.tag,
-      club: req.body.club,
-      date: req.body.date,
-      duration: req.body.duration,
-      price: req.body.price,
-      no_of_participants: req.body.no_of_participants,
-      mode: req.body.mode,
-      imgURL: req.body.imgURL
+    name: req.body.name,
+    description: req.body.description,
+    tag: req.body.tag,
+    club: req.body.club,
+    date: req.body.date,
+    duration: req.body.duration,
+    price: req.body.price,
+    no_of_participants: req.body.no_of_participants,
+    mode: req.body.mode,
+    imgURL: req.body.imgURL,
   });
-})
+});
 
 app.post(
   "/register",
   body("username").isEmail(),
   body("password").isLength({ min: 5 }),
- async function (req, res) {
+  async function (req, res) {
     const errors = validationResult(req);
-    otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false }); 
+    otp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      specialChars: false,
+    });
     console.log(otp);
     if (!errors.isEmpty()) {
       console.log(errors.array());
       const err = {
         errors: errors.array(),
       };
-    //   res.statusCode = 400;
+      //   res.statusCode = 400;
       res.send(err);
     } else {
-      
       User.register(
-        { name: req.body.name,
-          username: req.body.username },
-          req.body.password,
+        { name: req.body.name, username: req.body.username },
+        req.body.password,
         function (err, user) {
           if (err) {
             console.log(err);
-
           } else {
-            passport.authenticate("local")(req, res,async function () {
-
+            passport.authenticate("local")(req, res, async function () {
               const { requestId } = await courier.send({
                 message: {
                   to: {
@@ -219,44 +261,80 @@ app.post(
   }
 );
 
-app.post("/verifyOTP",function(req,res){
+app.post("/verifyOTP", function (req, res) {
   console.log(req.body.otp);
   if (req.body.otp === otp) {
     // res.send()
-
     res.sendStatus(200);
-
-}
-else {
-  console.log("otp is incorrect");
-}
+  } else {
+    console.log("otp is incorrect");
+  }
 });
 
-app.post("/login", body("username").isEmail(),
-body("password").isLength({ min: 5 }), 
-    function (req, res) {
-    
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-  });
-  req.login(user, function (err) {    
+// app.post(
+//   "/login",
+//   body("username").isEmail(),
+//   body("password").isLength({ min: 5 }),
+  // function (req, res) {
+  //   const user = User.find({
+  //     username: req.body.username,
+  //     password: req.body.password,
+  //   });
+  //   console.log(req.body.username);
+  //   console.log(req.body.password);
+  //   req.login(user, function (err) {
+  //     if (err) {
+  //       res.send(err);
+  //     } else {
+  //       passport.authenticate("local")(req,res,function(){
+  //         res.send("Successfully logged in");
+  //       });  
+  //     }
+  //     // res.send("logged in");
+  //   });
+  // }
+//   function (req, res, next) {
+//     passport.authenticate("local", function (err, user, info) {
+//       if (err) {
+//         errorOccurred(res, err);
+//       } else if (!user) {
+//         errorOccurred(res, info.message);
+//       } else {
+//         req.logIn(user, function (err) {
+//           if (err) {
+//             errorOccurred(res, err);
+//           }
+//           res.send(user);
+//         });
+//       }
+//     })(req, res, next);
+//   }
+// );
+
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
     if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function () {
-
-        console.log("login success");
-      });
+      return next(err); 
     }
-  });
+    if (! user) {
+      return res.send(false);
+    }
+    req.login(user, loginErr => {
+      if (loginErr) {
+        return next(loginErr);
+      }
+      return res.send(true);
+    });      
+  })(req, res, next);
 });
 
-app.get("/logout",function(req,res){
-  req.logout(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/');
-    });
+app.get("/logout", function (req, res) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 });
 
 app.listen(4000, function () {
