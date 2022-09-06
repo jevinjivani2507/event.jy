@@ -51,8 +51,6 @@ const RegisterPage = () => {
   //   }
   // }, [otp]);
 
-  const Temo = useNavigate();
-
   const otpSubmit = async () => {
     if (otp.length === 6) {
       // verifyOTP();
@@ -61,11 +59,11 @@ const RegisterPage = () => {
       });
       // console.log(response);
       if (response.status === 200) {
-        console.log(response);
+        // console.log(response);
         navigate("/login");
       }
     }
-    console.log("otpSubmit");
+    // console.log("otpSubmit");
   };
 
   return (

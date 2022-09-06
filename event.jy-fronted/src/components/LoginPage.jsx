@@ -31,11 +31,12 @@ const LoginPage = () => {
       password,
     });
     console.log(response);
-    if(response.status === 200){
+    if(response.data){
       navigate("/");
     }else{
-      console.log(response.data);
       toast.error("Invalid Credentials!!");
+      window.location.reload(false);
+      
     }
   }
 

@@ -11,9 +11,9 @@ const cors = require("cors");
 const { body, validationResult } = require("express-validator");
 const { CourierClient } = require("@trycourier/courier");
 const otpGenerator = require("otp-generator");
-const otpTool = require("otp-without-db");
 const bcrypt = require("bcrypt");
-const salt = bcrypt.genSalt(10);
+const LocalStrategy = require('passport-local');
+
 
 let otp = "adsasa";
 
@@ -53,24 +53,6 @@ app.use(
   })
 );
 
-// const LocalStrategy = require('passport-local');
-
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     // look for the user data
-//     User.findOne({ username: username }, function (err, user) {
-//       // if there is an error
-//       if (err) { return done(err); }
-//       // if user doesn't exist
-//       if (!user) { return done(null, false, { message: 'User not found.' }); }
-//       // if the password isn't correct
-//       if (!user.verifyPassword(password)) { return done(null, false, {
-//       message: 'Invalid password.' }); }
-//       // if the user is properly authenticated
-//       return done(null, user);
-//     });
-//   }
-// ));
 
 const DB = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.rhtymgo.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -114,6 +96,53 @@ eventSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 const Event = new mongoose.model("Event", eventSchema);
+
+
+
+
+passport.use(
+  new LocalStrategy(
+    { usernameField: "username", passwordField: "password" },
+    async (username, password, done) => {
+      try {
+        User.findOne(
+          { $or: [{ username: username }, { email: username }] },
+          async (err, foundUser) => {
+            if (err) {
+              console.log(err);
+              return done(err);
+            } else if (!foundUser) {
+              return done(null, false, { message: "Unknown User " + username });
+            } else {
+              // foundUser = JSON.parse(foundUser);
+              await bcrypt.compare(
+                password,
+                foundUser.password,
+                (error, result) => {
+                  if (error) {
+                    return done(null, false, error);
+                  } else {
+                    if (result) {
+                      return done(null, foundUser);
+                    } else {
+                      return done(null, false, {
+                        message: `Password didn't match`,
+                      });
+                    }
+                  }
+                }
+              );
+            }
+          }
+        );
+      } catch (error) {
+        console.log(error);
+        done(error);
+      }
+    }
+  )
+);
+
 
 passport.use(User.createStrategy());
 
@@ -242,28 +271,62 @@ app.post("/verifyOTP", function (req, res) {
   }
 });
 
-app.post(
-  "/login",
-  body("username").isEmail(),
-  body("password").isLength({ min: 5 }),
-  function (req, res) {
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-    });
-    console.log(req.body.username);
-    console.log(req.body.password);
-    req.login(user, function (err) {
-      if (err) {
-        res.send(err);
-      } else {
-        passport.authenticate("local");
-        res.send("Successfully logged in");
+// app.post(
+//   "/login",
+//   body("username").isEmail(),
+//   body("password").isLength({ min: 5 }),
+  // function (req, res) {
+  //   const user = User.find({
+  //     username: req.body.username,
+  //     password: req.body.password,
+  //   });
+  //   console.log(req.body.username);
+  //   console.log(req.body.password);
+  //   req.login(user, function (err) {
+  //     if (err) {
+  //       res.send(err);
+  //     } else {
+  //       passport.authenticate("local")(req,res,function(){
+  //         res.send("Successfully logged in");
+  //       });  
+  //     }
+  //     // res.send("logged in");
+  //   });
+  // }
+//   function (req, res, next) {
+//     passport.authenticate("local", function (err, user, info) {
+//       if (err) {
+//         errorOccurred(res, err);
+//       } else if (!user) {
+//         errorOccurred(res, info.message);
+//       } else {
+//         req.logIn(user, function (err) {
+//           if (err) {
+//             errorOccurred(res, err);
+//           }
+//           res.send(user);
+//         });
+//       }
+//     })(req, res, next);
+//   }
+// );
+
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err); 
+    }
+    if (! user) {
+      return res.send(false);
+    }
+    req.login(user, loginErr => {
+      if (loginErr) {
+        return next(loginErr);
       }
-      // res.send("logged in");
-    });
-  }
-);
+      return res.send(true);
+    });      
+  })(req, res, next);
+});
 
 app.get("/logout", function (req, res) {
   req.logout(function (err) {
