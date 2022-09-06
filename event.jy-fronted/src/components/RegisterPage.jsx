@@ -24,7 +24,7 @@ const RegisterPage = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/register", {
+    const response = await axios.post("http://localhost:4000/auth/register", {
       username,
       password,
     });
@@ -41,20 +41,12 @@ const RegisterPage = () => {
     setOtp(otp);
   }
 
-  // useEffect(() => {
-  //   if (otp.length === 6) {
-  //     // verifyOTP();
-  //     const response = axios.post("http://localhost:4000/verifyOTP", {
-  //       otp,
-  //     });
-  //     console.log(response);
-  //   }
-  // }, [otp]);
+
 
   const otpSubmit = async () => {
     if (otp.length === 6) {
       // verifyOTP();
-      const response = await axios.post("http://localhost:4000/verifyOTP", {
+      const response = await axios.post("http://localhost:4000/auth/verifyOTP", {
         otp,
       });
       // console.log(response);
