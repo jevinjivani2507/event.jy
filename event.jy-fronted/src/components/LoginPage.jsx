@@ -37,7 +37,7 @@ const LoginPage = () => {
   // const dispatch = useDispatch();
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/login", {
+    const response = await axios.post("http://localhost:4000/auth/login", {
       username,
       password,
     });
@@ -54,25 +54,7 @@ const LoginPage = () => {
     window.open("http://localhost:4000/auth/google", "_self");
   };
 
-  const [otp, setOtp] = React.useState("");
-  function handleOtpChange(otp) {
-    setOtp(otp);
-    // if(otp.length === 6){
-    // const response = await axios.post("http://localhost:4000/verifyOTP",{
-    //   otp
-    // });
-    // console.log(response);
-  }
-
-  useEffect(() => {
-    if (otp.length === 6) {
-      // verifyOTP();
-      const response = axios.post("http://localhost:4000/verifyOTP", {
-        otp,
-      });
-      console.log(response);
-    }
-  }, [otp]);
+ 
 
   return (
     <div className="flex h-screen">
