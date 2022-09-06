@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import logoBlack from "../Images/logoWhite.png";
-import { Button, User, Modal } from "@nextui-org/react";
+import { Button, User, Modal, Collapse, Text } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserTie,
@@ -21,7 +21,7 @@ const EventPage = () => {
   };
 
   return (
-    <div className="h-[85vh] ">
+    <div className="mb-20">
       <div className="mx-40 my-10">
         <div className="flex justify-center items-center">
           <div className="flex-col items-center w-7/12 my-5 pr-5">
@@ -33,8 +33,12 @@ const EventPage = () => {
             </header>
             <User
               src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-              name="Ariana Wattson"
-              description="UI/UX Designer @Github"
+              name={
+                <p className="text-MontserratBold text-lg">Programming Club</p>
+              }
+              description="programming.club@ahduni.edu.in"
+              squared
+              size="xl"
             />
             <div className="font-MontserratRegular">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
@@ -95,6 +99,37 @@ const EventPage = () => {
                   <h3>No of Participants</h3>
                 </div>
               </div>
+              <div>
+                <div className="text-mainBlue font-MontserratSemiBold text-xl">
+                Frequently Asked Questions
+                </div>
+                <Collapse.Group>
+                  <Collapse title="Option A">
+                    <Text>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </Text>
+                  </Collapse>
+                  <Collapse title="Option B">
+                    <Text>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </Text>
+                  </Collapse>
+                  <Collapse title="Option C">
+                    <Text>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </Text>
+                  </Collapse>
+                </Collapse.Group>
+              </div>
             </footer>
           </div>
           <div className="flex justify-center items-center w-5/12 rounded-2xl bg-mainDark h-[50vh] shadow-lg bg-dSecondary">
@@ -116,13 +151,17 @@ const EventPage = () => {
                 <div className="text-dTextColor text-mainBlue font-MontserratSemiBold text-lg">
                   Time
                 </div>
-                <div className="text-dTextColor font-MontserratSemiBold text-sm">7:30 PM</div>
+                <div className="text-dTextColor font-MontserratSemiBold text-sm">
+                  7:30 PM
+                </div>
               </div>
               <div>
                 <div className="text-dTextColor font-MontserratSemiBold text-lg">
                   Duration
                 </div>
-                <div className="text-dTextColor font-MontserratSemiBold text-sm">60 min</div>
+                <div className="text-dTextColor font-MontserratSemiBold text-sm">
+                  60 min
+                </div>
               </div>
             </div>
             <div className="gap-10 flex">
@@ -130,7 +169,9 @@ const EventPage = () => {
                 <div className="text-dTextColor font-MontserratSemiBold text-lg">
                   Price
                 </div>
-                <div className="text-dTextColor font-MontserratSemiBold text-sm">20 Rs.</div>
+                <div className="text-dTextColor font-MontserratSemiBold text-sm">
+                  20 Rs.
+                </div>
               </div>
               <div className="flex items-center">
                 <Button
