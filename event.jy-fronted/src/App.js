@@ -9,6 +9,7 @@ import MyEvents from "./components/MyEvents";
 import EventPage from "./pages/EventPage";
 import EventList from "./components/EventList";
 
+
 const theme = createTheme({
   type: "light", // it could be "light" or "dark"
   theme: {
@@ -28,7 +29,6 @@ const theme = createTheme({
 function App() {
 
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <NextUIProvider theme={theme}>

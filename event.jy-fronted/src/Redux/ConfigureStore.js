@@ -1,11 +1,11 @@
 import { createStore, combineReducers } from "redux";
 
-import { cart } from "./Reducers/cart.reducer";
+import { username } from "./Reducer/username.reducer";
 
 export const ConfigureStore = () => {
   const store = createStore(
-    combineReducers({ cart }),
+    combineReducers({ username }),
   );
 
-  return store;
+  return store ;
 };
