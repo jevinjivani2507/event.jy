@@ -13,5 +13,8 @@ const Event = require("../models/event");
 //       res.send(value);
 //     })
 // });
+router.post("/addevent/:id",function(req,res){
+    User.updateOne({id:req.body.username})
+})
 
 module.exports = router;

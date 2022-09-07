@@ -14,4 +14,10 @@ router.get("/event/:id",function(req,res) {
     })
 });
 
+router.get("/allevents",function(req,res){
+    Event.find({},function(err,value){
+      res.send(value);
+    })
+})
+
 module.exports = router;

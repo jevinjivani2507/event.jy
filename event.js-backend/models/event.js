@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
-const findOrCreate = require("mongoose-findorcreate");
+// const passportLocalMongoose = require("passport-local-mongoose"); 
+// const findOrCreate = require("mongoose-findorcreate");
 const eventSchema = new mongoose.Schema({
     id:Number,
     name: String,
@@ -15,7 +15,9 @@ const eventSchema = new mongoose.Schema({
     imgURL: String,
   });
 
-eventSchema.plugin(passportLocalMongoose);
-eventSchema.plugin(findOrCreate);
 
-  module.exports = new mongoose.model("Event",eventSchema);
+// eventSchema.plugin(passportLocalMongoose);
+// eventSchema.plugin(findOrCreate);
+
+module.exports = new mongoose.model("Event",eventSchema);
+
