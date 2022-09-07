@@ -1,10 +1,9 @@
-import React from "react";
+import React , { useState,useEffect } from "react";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
 import { Dropdown, Button } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useState,useEffect } from "react";
 
 import events from "../JSON/events";
 

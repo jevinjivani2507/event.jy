@@ -16,6 +16,16 @@ const Navbar = () => {
           <img className="h-8" src={logoWhite} alt="" />
         </Link>
         <div className="flex">
+        <Link to="/club">
+            <Button
+              className="font-MontserratSemiBold text-white"
+              color="tertiary"
+              variant="contained"
+              auto
+            >
+              Club
+            </Button>
+          </Link>
           <Link to="/MyEvents">
             <Button
               className="font-MontserratSemiBold text-white"
@@ -36,6 +46,7 @@ const Navbar = () => {
               Login
             </Button>
           </Link>
+          
         </div>
       </div>
     </nav>
