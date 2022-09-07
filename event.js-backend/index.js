@@ -42,6 +42,8 @@ app.use(passport.session());
 
 /* ----------------- All the Routes ------------------- */
 app.use("/auth", require("./routes/auth"));
+app.use("/user", require("./routes/user"));
+app.use("/eventlist", require("./routes/eventlist"));
 
 // The last route when the route isn't valid
 app.use("*", (req, res) => {
