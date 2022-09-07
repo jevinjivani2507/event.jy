@@ -5,13 +5,24 @@ import EventList from '../components/EventList'
 import Blog from '../components/Blog'
 
 import { useDispatch, useSelector } from "react-redux";
-import { USER } from "../Redux/ActionTypes";
+import { USER, EVENTS } from "../Redux/ActionTypes";
+
+import fetchEvents from '../utilities/api'
+import { useEffect } from 'react'
 
 const Events = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.username.user);
+  const events = useSelector((state) => state.username.events);
 
-  console.log(user);
+  useEffect(() => {
+    fetchEvents(dispatch);
+  }, []);
+  
+  useEffect(() => {
+    console.log(events);
+  }, [events]);
+
 
   return (
     <div className="">

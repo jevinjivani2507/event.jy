@@ -1,24 +1,26 @@
-
-import { USER } from "../ActionTypes";
-
+import events from "../../JSON/events";
+import { USER, EVENTS } from "../ActionTypes";
 
 export const username = (
   state = {
-    user: localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : "",
+    user: "",
+    events: [],
   },
   action
 ) => {
   switch (action.type) {
     case USER: {
-      localStorage.setItem("user", JSON.stringify(action.payload));
       return {
         ...state,
         user: action.payload,
       };
     }
-
+    case EVENTS: {
+      return {
+        ...state,
+        events: action.payload,
+      };
+    }
     default:
       return state;
   }

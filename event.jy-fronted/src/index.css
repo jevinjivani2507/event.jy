@@ -18,10 +18,21 @@
   src: url("./fonts/Montserrat-SemiBold-600.ttf") format("truetype");
 }
 
-body{
-    font-family: "MontserratRegular" !important;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #EAE3D2 !important;
+body {
+  font-family: "MontserratRegular" !important;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #eae3d2 !important;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
