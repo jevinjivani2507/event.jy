@@ -5,7 +5,7 @@ const User = require("../models/user");
 const { CourierClient } = require("@trycourier/courier");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcrypt");
-const Event = require("../models/event");
+
 
 
 let otp = "adsasa";
@@ -29,13 +29,6 @@ router.get(
     failureRedirect: "/login",
   })
 );
-
-router.get("/event/:id",function(req,res) {
-    eventid = req.params.id;
-    Event.findOne(({id:eventid}),function(err,value){
-      res.send(value);
-    })
-});
 
 router.post(
   "/register",
@@ -141,4 +134,4 @@ router.get("/logout", function (req, res) {
   });
 });
 
-module.exports = router;
+  module.exports = router;

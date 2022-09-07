@@ -7,11 +7,11 @@ const User = require("../models/user");
 const Event = require("../models/event");
 
 
-// router.get("/event/:id",function(req,res) {
-//     eventid = req.params.id;
-//     Event.findOne(({id:eventid}),function(err,value){
-//       res.send(value);
-//     })
-// });
+router.get("/event/:id",function(req,res) {
+    eventid = req.params.id;
+    Event.findOne(({id:eventid}),function(err,value){
+      res.send(value);
+    })
+});
 
 module.exports = router;
