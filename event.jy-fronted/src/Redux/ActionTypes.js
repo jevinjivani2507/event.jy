@@ -1,1 +1,1 @@
-export const REDUX = "recux";
+export const USER = "user";

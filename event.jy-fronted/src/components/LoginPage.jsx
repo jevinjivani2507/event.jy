@@ -10,7 +10,18 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { useDispatch, useSelector } from "react-redux";
+import { USER } from "../Redux/ActionTypes";
+
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.username.user);
+
+  console.log(user);
+
+  // dispatch({ type: USER, payload: "Rahul" });
+  // dispatch({ type: USER, payload: "Sita" });
+
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
@@ -31,9 +42,9 @@ const LoginPage = () => {
       password,
     });
     console.log(response);
-    if(response.data){
+    if (response.data) {
       navigate("/");
-    }else{
+    } else {
       toast.error("Invalid Credentials!!");
       // window.location.reload(false);
       setPassword("");
@@ -66,8 +77,8 @@ const LoginPage = () => {
               Google
             </Button>
           </div>
-          <div className="my-3">
-            ------------------------- OR -------------------------
+          <div className="w-full flex justify-center items-center">
+            <hr className="line" /> <span>Or</span> <hr className="line" />
           </div>
           <div>
             <form className="" onSubmit={handleSubmit}>
