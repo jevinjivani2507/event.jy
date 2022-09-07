@@ -49,7 +49,10 @@ const LoginPage = () => {
       navigate("/");
     } else {
       toast.error("Invalid Credentials!!");
-      window.location.reload(false);
+      // window.location.reload(false);
+      setPassword("");
+      setUsername("");
+      
     }
   }
 

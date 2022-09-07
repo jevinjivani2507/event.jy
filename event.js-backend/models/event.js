@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 const eventSchema = new mongoose.Schema({
+    id:Number,
     name: String,
     description: String,
     tag: String,
