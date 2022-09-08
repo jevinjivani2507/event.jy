@@ -20,8 +20,9 @@ router.get("/allevents",function(req,res){
     })
 })
 
-router.post("/addEvents", function (req, res) {
+router.post("/addEvents", function (req, res,err) {
   const event = new Event({
+    id:req.body.id,
     name: req.body.name,
     description: req.body.description,
     tag: req.body.tag,
@@ -33,7 +34,16 @@ router.post("/addEvents", function (req, res) {
     mode: req.body.mode,
     imgURL: req.body.imgURL,
   });
-  Event.save();
+
+  event.save(function(err){
+    if(err) return res.send(false);
+    else res.send(true);
+  });
+  // if(err){
+  //   res.sendStatus(400);
+  // }
+  // else
+    // res.send(event);
 
 });
 

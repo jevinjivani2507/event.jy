@@ -2,17 +2,18 @@ const mongoose = require("mongoose");
 // const passportLocalMongoose = require("passport-local-mongoose"); 
 // const findOrCreate = require("mongoose-findorcreate");
 const eventSchema = new mongoose.Schema({
-    id:Number,
-    name: String,
-    description: String,
-    tag: String,
-    club: String,
-    date: String,
-    duration: String,
-    price: String,
-    no_of_participants: String,
-    mode: String,
-    imgURL: String,
+    id:{type:Number,
+    unique:true},
+    name: {type:String,unique:true},
+    description: {type:String,unique:true},
+    tag: {type:String,unique:true},
+    club: {type:String,unique:true},
+    date: {type:String,unique:true},
+    duration: {type:String,unique:true},
+    price: {type:String,unique:true},
+    no_of_participants: {type:String,unique:true},
+    mode: {type:String,unique:true},
+    imgURL: {type:String,unique:true},
   });
 
 
