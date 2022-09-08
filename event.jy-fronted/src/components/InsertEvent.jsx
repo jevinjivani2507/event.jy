@@ -12,139 +12,148 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
+import { FileUploader } from "react-drag-drop-files";
+
 const InsertEvent = () => {
-  const [value, setValue] = useState();
+  const [name, setName] = useState();
+  const [startDate, setStartDate] = useState();
+  const [startTime, setStartTime] = useState();
+  const [endDate, setEndDate] = useState();
+  const [endTime, setEndTime] = useState();
+  const [description, setDescription] = useState("");
+  const [mode, setMode] = useState();
+  const [price, setPrice] = useState();
+  const [file, setFile] = useState(null);
+  const [value, setValue] = useState(null);
 
-  const [mode, setMode] = React.useState();
-  console.log(value);
+  const handleChange = (file) => {
+    setFile(file);
+  };
 
-  const [name, setName] = useState("Cat in the Hat");
+  const fileTypes = ["JPG", "PNG", "GIF"];
 
   return (
-    <div className="min-h-screen">
+    <div className="flex min-h-[92vh]">
       <div className="w-1/2">
-        <form action="">
-          <div className="flex flex-col p-10">
-            <TextField
-              id="outlined-name"
-              label="Event Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Basic example"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
+        <form className="" action="">
+          <div className="p-10">
+            <div className="flex flex-col p-10 space-y-4 text-white">
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Event Name"
+                color=""
+                multiline
+                maxRows={4}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <TimePicker
-                label="Basic example"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />}
+              <div className="flex gap-4">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="Start Date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    label="Start Time"
+                    value={startTime}
+                    onChange={(e) => setStartTime(e.target.value)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </div>
+              <div className="flex gap-4">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    label="End Date"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <TimePicker
+                    label="End Time"
+                    value={endTime}
+                    onChange={(e) => setEndTime(e.target.value)}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+              </div>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Multiline"
+                multiline
+                maxRows={4}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
-            </LocalizationProvider>
-            <TextField
-              id="outlined-basic"
-              label="Description"
-              variant="outlined"
-            />
-            <div>
-              <p>Select Mode</p>
-              <RadioGroup
-                aria-labelledby="demo-controlled-radio-buttons-group"
-                name="controlled-radio-buttons-group"
-                value={mode}
-                onChange={(e) => setMode(e.target.value)}
-              >
-                <div className="flex">
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio />}
-                    label="Online"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio />}
-                    label="Offline"
-                  />
-                </div>
-              </RadioGroup>
-            </div>
+              <div>
+                <p>Select Mode</p>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  value={mode}
+                  onChange={(e) => setMode(e.target.value)}
+                >
+                  <div className="flex">
+                    <FormControlLabel
+                      value="female"
+                      control={<Radio />}
+                      label="Online"
+                    />
+                    <FormControlLabel
+                      value="male"
+                      control={<Radio />}
+                      label="Offline"
+                    />
+                  </div>
+                </RadioGroup>
+              </div>
 
-            <TextField
-              id="outlined-number"
-              label="Price(₹)"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+              <TextField
+                id="outlined-number"
+                label="Price(₹)"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
 
-            <div>
-              <p className="mb-2">Duration</p>
-              <div className="flex gap-5">
-                <TextField
-                  id="outlined-number"
-                  label="Months"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+              <div className="">
+                <p>Select Tags</p>
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Technology"
                 />
-                <TextField
-                  id="outlined-number"
-                  label="Days"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Entertainment"
                 />
-                <TextField
-                  id="outlined-number"
-                  label="Minutes"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Design"
+                />
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Label"
                 />
               </div>
             </div>
-            <div className="">
-              <p>Select Tags</p>
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Technology"
-              />
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Entertainment"
-              />
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Design"
-              />
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Label"
-              />
-            </div>
-            <Input
-              type="text"
-              // value={username}
-              className="mb-1"
-              placeholder="Email"
-              // onChange={(e) => setUsername(e.target.value)}
-            />
           </div>
         </form>
+      </div>
+      <div className="w-1/2 p-10 flex justify-center items-center">
+        <FileUploader
+          handleChange={handleChange}
+          name="file"
+          types={fileTypes}
+        />
       </div>
     </div>
   );
