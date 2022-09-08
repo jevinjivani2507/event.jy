@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Input } from "@nextui-org/react";
-
 import TextField from "@mui/material/TextField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -19,7 +18,7 @@ const InsertEvent = () => {
   console.log(value);
 
   const [name, setName] = useState("Cat in the Hat");
-
+  
   return (
     <div className="min-h-screen">
       <div className="w-1/2">

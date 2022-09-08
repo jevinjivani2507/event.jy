@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
-const mongoose = require("mongoose");
+
 
 const User = require("../models/user");
 const Event = require("../models/event");
@@ -13,8 +12,12 @@ const Event = require("../models/event");
 //       res.send(value);
 //     })
 // });
-router.post("/addevent/:id",function(req,res){
-    User.updateOne({id:req.body.username})
-})
+// router.get("/addevent",function(req,res){
+  
+
+//     res.send(req.user);
+//     User.updateOne({username:req.user.username},{$push: {events: 1}});
+//     // res.send(req.user.events);
+// })
 
 module.exports = router;

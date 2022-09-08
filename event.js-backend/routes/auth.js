@@ -4,11 +4,13 @@ const passport = require("passport");
 const User = require("../models/user");
 const { CourierClient } = require("@trycourier/courier");
 const otpGenerator = require("otp-generator");
-const bcrypt = require("bcrypt");
+
+// const bcrypt = require("bcrypt");
 
 
 
 let otp = "adsasa";
+
 
 const CLIENT_URL = "http://localhost:3000";
 const courier = CourierClient({
@@ -43,8 +45,8 @@ router.post(
         User.findOne(
           { username: req.body.username },
             async (err, foundUser) => {
-                console.log(req.body.username);
-                console.log(foundUser);
+                // console.log(req.body.username);
+                // console.log(foundUser);
               if (err) {
                 console.log(err);
               } else if (foundUser === null || foundUser === undefined) {
@@ -107,6 +109,10 @@ router.post("/verifyOTP", function (req, res) {
 });
 
 router.post("/login", function (req, res, next) {
+  const user = new User({
+   username: req.body.username,
+  password: req.body.password
+});
   passport.authenticate("local", function (err, user, info) {
     console.log(user);
     if (err) {
@@ -115,6 +121,7 @@ router.post("/login", function (req, res, next) {
     if (!user) {
       return res.send(false);
     }
+    // res.send(user);
     req.logIn(user, (loginErr) => {
       if (loginErr) {
         return next(loginErr);
@@ -122,6 +129,7 @@ router.post("/login", function (req, res, next) {
      
       return res.send(true);
     });
+    
   })(req, res, next);
 });
 
