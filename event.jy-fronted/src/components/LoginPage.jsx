@@ -17,9 +17,6 @@ import Lottie from "lottie-react";
 import rocket from "../Images/rocket.json";
 
 const LoginPage = () => {
-
-
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.username.user);
 
@@ -29,6 +26,9 @@ const LoginPage = () => {
 
   console.log(user);
 
+  dispatch({ type: USER, payload: "jyoti" });
+
+
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
@@ -37,8 +37,8 @@ const LoginPage = () => {
     console.log("closed");
   };
 
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   // const [errorInOTP, setErrorInOTP] = React.useState(false);
   // const dispatch = useDispatch();

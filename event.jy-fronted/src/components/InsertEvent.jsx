@@ -18,12 +18,13 @@ import { FileUploader } from "react-drag-drop-files";
 
 const InsertEvent = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState();
   const [id, setId] = useState();
+  const [name, setName] = useState();
   const [startDate, setStartDate] = useState();
   const [startTime, setStartTime] = useState();
-  const [endDate, setEndDate] = useState();
-  const [endTime, setEndTime] = useState();
+  const [durationHour, setDurationHour] = useState();
+  const [durationDay, setDurationDay] = useState();
+  const [durationMonth, setDurationMonth] = useState();
   const [description, setDescription] = useState("");
   const [mode, setMode] = useState();
   const [price, setPrice] = useState();
@@ -36,21 +37,23 @@ const InsertEvent = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/eventlist/addEvents", {
-     id,  
-     name,
-      description,  
-      value,
-      startDate,
-      price,
-      mode,
-    });
+    const response = await axios.post(
+      "http://localhost:4000/eventlist/addEvents",
+      {
+        id,
+        name,
+        description,
+        value,
+        startDate,
+        price,
+        mode,
+      }
+    );
     console.log(response);
-    if(response.data){
+    if (response.data) {
       console.log("added");
       toast.error("event added!");
-    }
-    else {
+    } else {
       toast.error("add again");
     }
   }
@@ -62,8 +65,8 @@ const InsertEvent = () => {
       <div className="w-1/2">
         <form className="" action="">
           <div className="p-10">
-            <div className="flex flex-col p-10 space-y-4 text-white">
-            <TextField
+            <div className="flex flex-col p-10 space-y-4">
+              <TextField
                 id="outlined-multiline-flexible"
                 label="Event id"
                 color=""
@@ -99,23 +102,37 @@ const InsertEvent = () => {
                   />
                 </LocalizationProvider>
               </div>
-              <div className="flex gap-4">
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="End Date"
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    renderInput={(params) => <TextField {...params} />}
+              <div className="flex flex-col gap-4">
+                <p>Duration</p>
+                <div className="flex gap-4">
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="Hour"
+                    color=""
+                    multiline
+                    maxRows={4}
+                    value={durationHour}
+                    onChange={(e) => setDurationHour(e.target.value)}
                   />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <TimePicker
-                    label="End Time"
-                    value={endTime}
-                    onChange={(e) => setEndTime(e.target.value)}
-                    renderInput={(params) => <TextField {...params} />}
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="Day"
+                    color=""
+                    multiline
+                    maxRows={4}
+                    value={durationDay}
+                    onChange={(e) => setDurationDay(e.target.value)}
                   />
-                </LocalizationProvider>
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="Month"
+                    color=""
+                    multiline
+                    maxRows={4}
+                    value={durationMonth}
+                    onChange={(e) => setDurationMonth(e.target.value)}
+                  />
+                </div>
               </div>
               <TextField
                 id="outlined-multiline-flexible"
@@ -178,17 +195,17 @@ const InsertEvent = () => {
                   label="Label"
                 />
               </div>
+              <Button
+                auto
+                type="submit"
+                className="!bg-dSecondary"
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
             </div>
           </div>
-          
         </form>
-        <Button
-                  type="submit"
-                  className="!bg-dSecondary"
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
       </div>
       <div className="w-1/2 p-10 flex justify-center items-center">
         <FileUploader

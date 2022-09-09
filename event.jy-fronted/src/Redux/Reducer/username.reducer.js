@@ -1,4 +1,3 @@
-import events from "../../JSON/events";
 import { USER, EVENTS } from "../ActionTypes";
 
 export const username = (
