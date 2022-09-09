@@ -5,10 +5,10 @@ import logoBlack from "../Images/logoBlack.png";
 import logoWhite from "../Images/logoWhite.png";
 
 const EventCard = (props) => {
-  const i = 2;
+  // const i = 2;
   return (
     <div className="w-full">
-      <Link to={`/event/${i}`}>
+      <Link to={`/event/${1 }`}>
         <Card isPressable isHoverable className="border-none">
           <div className="flex h-[25vh] items-center bg-white">
             <div className="max-h-full rounded-t-xl">
