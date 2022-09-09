@@ -24,6 +24,7 @@
     "otp-generator": "^4.0.0",
     "otp-input-react": "^0.3.0",
     "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
@@ -33,6 +34,7 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
+    "redux-cookies-middleware": "^0.2.1",
     "tailwind-scrollbar-hide": "^1.1.7",
     "web-vitals": "^2.1.4"
   },
