@@ -24,11 +24,6 @@ const LoginPage = () => {
     Cookies.get("user");
   }
 
-  console.log(user);
-
-  dispatch({ type: USER, payload: "jyoti" });
-
-
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
