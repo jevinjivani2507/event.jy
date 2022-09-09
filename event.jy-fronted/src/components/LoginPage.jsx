@@ -12,13 +12,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { USER } from "../Redux/ActionTypes";
-
+import Cookies from "js-cookie";
 import Lottie from "lottie-react";
 import rocket from "../Images/rocket.json";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.username.user);
+
+  const readCookie = () => {
+    Cookies.get("user");
+  }
 
   console.log(user);
 
@@ -44,8 +48,10 @@ const LoginPage = () => {
       username,
       password,
     });
+ 
     console.log(response);
     if (response.data) {
+      Cookies.set("user","loginTrue");
       navigate("/");
     } else {
       toast.error("Invalid Credentials!!");

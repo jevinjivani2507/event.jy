@@ -12,7 +12,7 @@ import {
 
 const EventPage = () => {
   const { id } = useParams();
-
+  console.log(id);
   const [visible, setVisible] = React.useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
