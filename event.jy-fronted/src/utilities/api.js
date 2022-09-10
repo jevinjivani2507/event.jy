@@ -8,7 +8,7 @@ import { EVENTS } from "../Redux/ActionTypes";
 const api = async (dispatch) => {
     
   const response = await axios.get(config.URL_EVENT);
-  console.log(response);
+  // console.log(response);
 
   dispatch({
     type: EVENTS,

@@ -21,8 +21,12 @@ const LoginPage = () => {
   const user = useSelector((state) => state.username.user);
 
   const readCookie = () => {
-    Cookies.get("user");
+    const uc = Cookies.get("user");
   }
+
+  useEffect(() => {
+    readCookie();
+  },[]);
 
   console.log(user);
 
@@ -40,6 +44,8 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // console.log(readCookie);  
+
   // const [errorInOTP, setErrorInOTP] = React.useState(false);
   // const dispatch = useDispatch();
   async function handleSubmit(e) {
@@ -49,11 +55,12 @@ const LoginPage = () => {
       password,
     });
 
+
     
- 
-    console.log(response);
+    // console.log(response);
     if (response.data) {
       Cookies.set("user","loginTrue");
+      console.log(Cookies.get("user"));
       navigate("/");
     } else {
       toast.error("Invalid Credentials!!");

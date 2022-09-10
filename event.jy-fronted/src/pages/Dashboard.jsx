@@ -20,7 +20,7 @@ const Events = () => {
   }, []);
   
   useEffect(() => {
-    console.log(events);
+    // console.log(events);
   }, [events]);
 
 
