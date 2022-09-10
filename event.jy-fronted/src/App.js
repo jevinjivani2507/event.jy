@@ -10,7 +10,9 @@ import EventPage from "./pages/EventPage";
 import EventList from "./components/EventList";
 import ClubPage from "./components/ClubPage";
 import InsertEvent from "./components/InsertEvent";
-
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 const theme = createTheme({
   type: "light", // it could be "light" or "dark"
@@ -29,8 +31,18 @@ const theme = createTheme({
 });
 
 function App() {
-
+  console.log(Cookies.get("user"));
   const location = useLocation();
+
+  const navigate = useNavigate();
+
+  console.log(typeof location.pathname);
+
+  useEffect(() => {
+    if (Cookies.get("user") === "loginTrue" && location.pathname === "/login") {
+      navigate("/");
+    }
+  }, [location.pathname]);
 
   return (
     <NextUIProvider theme={theme}>

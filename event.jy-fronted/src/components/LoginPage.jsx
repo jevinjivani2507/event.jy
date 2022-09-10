@@ -16,6 +16,8 @@ import Cookies from "js-cookie";
 import Lottie from "lottie-react";
 import rocket from "../Images/rocket.json";
 
+import { useCookies } from 'react-cookie';
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.username.user);
@@ -23,6 +25,9 @@ const LoginPage = () => {
   const readCookie = () => {
     Cookies.get("user");
   }
+
+  const [cookies, setCookie] = useCookies(['user']);
+  
 
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);

@@ -9,6 +9,7 @@ import { USER, EVENTS } from "../Redux/ActionTypes";
 
 import fetchEvents from '../utilities/api'
 import { useEffect } from 'react'
+import Cookies from "js-cookie";
 
 const Events = () => {
   const dispatch = useDispatch();
@@ -20,9 +21,10 @@ const Events = () => {
   }, []);
   
   useEffect(() => {
-    console.log(events);
+    // console.log(events);
   }, [events]);
-
+  
+  
 
   return (
     <div className="">
