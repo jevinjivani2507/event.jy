@@ -41,6 +41,8 @@ function App() {
   useEffect(() => {
     if (Cookies.get("user") === "loginTrue" && location.pathname === "/login") {
       navigate("/");
+    }else if(Cookies.get("user") !== "loginTrue"){
+      navigate("/login");
     }
   }, [location.pathname]);
 
