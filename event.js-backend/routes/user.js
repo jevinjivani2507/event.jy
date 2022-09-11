@@ -4,6 +4,7 @@ const router = express.Router();
 
 const User = require("../models/user");
 const Event = require("../models/event");
+const { json } = require("body-parser");
 
 
 // router.get("/event/:id",function(req,res) {
@@ -11,6 +12,11 @@ const Event = require("../models/event");
 //     Event.findOne(({id:eventid}),function(err,value){
 //       res.send(value);
 //     })
+router.get("/user",function(req,res){
+    if(req.user){
+        res.json(req.user);
+    }
+})
 // });
 // router.get("/addevent",function(req,res){
   

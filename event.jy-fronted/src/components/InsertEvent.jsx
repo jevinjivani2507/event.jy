@@ -88,10 +88,9 @@ const InsertEvent = () => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label="Start Date"
-                    // value={}
-                    onChange={(e,d) => {
-                      console.log(e.$d);
-                  //     setDate(e.target.value)
+                    value={date}
+                    onChange={(e, d) => {
+                      setDate(e.$d);
                     }}
                     renderInput={(params) => <TextField {...params} />}
                   />
@@ -100,7 +99,9 @@ const InsertEvent = () => {
                   <TimePicker
                     label="Start Time"
                     value={time}
-                    onChange={(e) => setTime(e.target.value)}
+                    onChange={(e) => {
+                      setTime(e.$d);
+                    }}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
