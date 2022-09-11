@@ -15,21 +15,23 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { FileUploader } from "react-drag-drop-files";
+// import { set } from "mongoose";
 
 const InsertEvent = () => {
   const navigate = useNavigate();
   const [id, setId] = useState();
   const [name, setName] = useState();
-  const [startDate, setStartDate] = useState();
+  const [date, setStartDate] = useState();
   const [startTime, setStartTime] = useState();
-  const [durationHour, setDurationHour] = useState();
+  const [duration, setDurationHour] = useState();
   const [durationDay, setDurationDay] = useState();
   const [durationMonth, setDurationMonth] = useState();
   const [description, setDescription] = useState("");
   const [mode, setMode] = useState();
   const [price, setPrice] = useState();
+  const [club, setClub] = useState();
   const [file, setFile] = useState(null);
-  const [value, setValue] = useState(null);
+  // const [value, setValue] = useState(null);
 
   const handleChange = (file) => {
     setFile(file);
@@ -43,18 +45,46 @@ const InsertEvent = () => {
         id,
         name,
         description,
-        value,
-        startDate,
+        duration,
+        startTime,
+        club,
+        date,
         price,
         mode,
       }
     );
     console.log(response);
-    if (response.data) {
-      console.log("added");
-      toast.error("event added!");
-    } else {
-      toast.error("add again");
+    if (response.data === false) {
+      console.log("event already exists");
+      setClub("");
+      setDescription("");
+      setId("");
+      setMode("");
+      setName("");
+      setPrice("");
+      setStartDate("");
+      setDurationDay("");
+      setDurationHour("");
+      setDurationMonth("");
+      setStartTime("");
+      toast("event already exists!");
+    } else if(response.data){
+      console.log("event added");
+      setClub("");
+      setDescription("");
+      setId("");
+      setMode("");
+      setName("");
+      setPrice("");
+      setStartDate("");
+      setDurationDay("");
+      setDurationHour("");
+      setDurationMonth("");
+      setStartTime("");
+      toast.success("event added");
+    }
+    else{
+      toast.error("error occured...add again");
     }
   }
 
@@ -77,6 +107,15 @@ const InsertEvent = () => {
               />
               <TextField
                 id="outlined-multiline-flexible"
+                label="Club"
+                color=""
+                multiline
+                maxRows={4}
+                value={club}
+                onChange={(e) => setClub(e.target.value)}
+              />
+              <TextField
+                id="outlined-multiline-flexible"
                 label="Event Name"
                 color=""
                 multiline
@@ -88,7 +127,7 @@ const InsertEvent = () => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label="Start Date"
-                    value={startDate}
+                    value={date}
                     onChange={(e) => setStartDate(e.target.value)}
                     renderInput={(params) => <TextField {...params} />}
                   />
@@ -111,7 +150,7 @@ const InsertEvent = () => {
                     color=""
                     multiline
                     maxRows={4}
-                    value={durationHour}
+                    value={duration}
                     onChange={(e) => setDurationHour(e.target.value)}
                   />
                   <TextField
@@ -136,7 +175,7 @@ const InsertEvent = () => {
               </div>
               <TextField
                 id="outlined-multiline-flexible"
-                label="Multiline"
+                label="Description"
                 multiline
                 maxRows={4}
                 value={description}

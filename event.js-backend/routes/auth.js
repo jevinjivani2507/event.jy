@@ -136,9 +136,9 @@ router.post("/login", function (req, res, next) {
 router.get("/logout", function (req, res) {
   req.logout(function (err) {
     if (err) {
-      return next(err);
+      res.send(false);
     }
-    res.redirect("/");
+    res.send(true);
   });
 });
 
