@@ -39,11 +39,6 @@ router.post("/addEvents", function (req, res,err) {
     if(err) return res.send(false);
     else res.send(true);
   });
-  // if(err){
-  //   res.sendStatus(400);
-  // }
-  // else
-    // res.send(event);
 
 });
 
