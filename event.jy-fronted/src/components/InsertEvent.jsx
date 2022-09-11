@@ -20,8 +20,8 @@ const InsertEvent = () => {
   const navigate = useNavigate();
   const [id, setId] = useState();
   const [name, setName] = useState();
-  const [startDate, setStartDate] = useState();
-  const [startTime, setStartTime] = useState();
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
   const [durationHour, setDurationHour] = useState();
   const [durationDay, setDurationDay] = useState();
   const [durationMonth, setDurationMonth] = useState();
@@ -44,7 +44,7 @@ const InsertEvent = () => {
         name,
         description,
         value,
-        startDate,
+        date,
         price,
         mode,
       }
@@ -88,16 +88,19 @@ const InsertEvent = () => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     label="Start Date"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
+                    // value={}
+                    onChange={(e,d) => {
+                      console.log(e.$d);
+                  //     setDate(e.target.value)
+                    }}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <TimePicker
                     label="Start Time"
-                    value={startTime}
-                    onChange={(e) => setStartTime(e.target.value)}
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>

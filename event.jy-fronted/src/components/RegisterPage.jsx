@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Lottie from "lottie-react";
+import rocket from "../Images/rocket.json";
+
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
@@ -61,7 +64,7 @@ const RegisterPage = () => {
   return (
     <div className="flex h-screen">
       <div className="flex justify-center items-center w-5/12">
-        <img className="h-[75%]" src={loginGIF} alt="" />
+        <Lottie animationData={rocket} loop={true} />
       </div>
       <div className="w-7/12 flex justify-center items-center bg-mainBlue rounded-l-3xl shadow-2xl bg-dSecondary">
         <div className="flex flex-col justify-center items-center bg-white w-[50%] p-10 rounded-2xl">

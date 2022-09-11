@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Modal } from "@nextui-org/react";
 import axios from "axios";
-import loginGIF from "../Images/loginGIF.gif";
 import Google from "../Images/Google.svg";
 
 import OTPInput from "otp-input-react";
@@ -16,7 +15,7 @@ import Cookies from "js-cookie";
 import Lottie from "lottie-react";
 import rocket from "../Images/rocket.json";
 
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -24,10 +23,10 @@ const LoginPage = () => {
 
   const readCookie = () => {
     Cookies.get("user");
-  }
+  };
 
-  const [cookies, setCookie] = useCookies(['user']);
-  
+
+  const [cookies, setCookie] = useCookies(["user"]);
 
   const navigate = useNavigate();
   const [visible, setVisible] = React.useState(false);
@@ -49,26 +48,21 @@ const LoginPage = () => {
       password,
     });
 
-    
- 
     console.log(response);
     if (response.data) {
-      Cookies.set("user","loginTrue");
+      Cookies.set("user", "loginTrue");
       navigate("/");
     } else {
       toast.error("Invalid Credentials!!");
       // window.location.reload(false);
       setPassword("");
       setUsername("");
-      
     }
   }
 
   const google = () => {
     window.open("http://localhost:4000/auth/google", "_self");
   };
-
- 
 
   return (
     <div className="flex h-screen">
@@ -106,7 +100,16 @@ const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  <p className="flex justify-end text-xs">Forgot Password?</p>
                 </div>
+                <Button
+                  auto
+                  className="!bg-white !text-black font-MontserratRegular"
+                  type="submit"
+                  onPress={(e) => navigate("/register")}
+                >
+                  Don't have Account?
+                </Button>
                 <Button
                   type="submit"
                   className="!bg-dSecondary"
