@@ -43,23 +43,51 @@ const InsertEvent = () => {
         id,
         name,
         description,
-        value,
         date,
+        time,
+        durationHour,
+        durationDay,
+        durationMonth,
         price,
         mode,
       }
     );
     console.log(response);
-    if (response.data) {
-      console.log("added");
-      toast.error("event added!");
-    } else {
-      toast.error("add again");
+    if (response.data === false) {
+      console.log("event already exists");
+      // setClub("");
+      setDescription("");
+      setId("");
+      setMode("");
+      setName("");
+      setPrice("");
+      setDate("");
+      setDurationDay("");
+      setDurationHour("");
+      setDurationMonth("");
+      setTime("");
+      toast("event already exists!");
+    } else if(response.data){
+      console.log("event added");
+      // setClub("");
+      setDescription("");
+      setId("");
+      setMode("");
+      setName("");
+      setPrice("");
+      setDate("");
+      setDurationDay("");
+      setDurationHour("");
+      setDurationMonth("");
+      setTime("");
+      toast.success("event added");
+    }
+    else{
+      toast.error("error occured...add again");
     }
   }
 
   const fileTypes = ["JPG", "PNG", "GIF"];
-
   return (
     <div className="flex min-h-[92vh]">
       <div className="w-1/2">
